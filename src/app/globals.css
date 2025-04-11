@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -160,3 +159,69 @@ body {
   filter: drop-shadow(0 0 0.5rem currentColor);
 }
 
+/* Neon glow effect */
+.neon-glow {
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 15px #00FFFF,
+    0 0 20px #00FFFF,
+    0 0 25px #00FFFF,
+    0 0 30px #00FFFF;
+}
+
+/* Animation for transitions */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Three.js Matrix Background */
+#matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Matrix Effect Text Style */
+.matrix-text {
+  font-family: 'Courier New', Courier, monospace;
+  color: #00FF00; /* Electric Green */
+  font-size: 16px;
+  text-shadow: 0 0 5px #00FF00;
+}
+
+/* Add more themes here */
+.hacker-theme-one {
+  --background: #000000; /* Black */
+  --foreground: #00FF00; /* Electric Green */
+  --accent: #00FFFF; /* Neon Blue */
+}
+
+.hacker-theme-two {
+  --background: #121212; /* Dark Gray */
+  --foreground: #800080; /* Purple */
+  --accent: #00FF00; /* Electric Green */
+}
+
+.aurasec-theme {
+    --background: #121212; /* Dark Gray */
+    --foreground: #00FFFF; /* Neon Blue */
+    --accent: #800080; /* Purple */
+}
+
+body.aurasec-theme {
+    background-color: #121212;
+    color: #00FFFF;
+}
