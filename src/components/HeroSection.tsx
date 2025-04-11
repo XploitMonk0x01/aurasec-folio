@@ -1,9 +1,9 @@
-
 'use client';
 
 import React from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion';
+import SocialLinks from '@/components/SocialLinks'; // Import SocialLinks
 
 const quotes = [
   "The best way to predict the future is to create it. - Peter Drucker",
@@ -15,7 +15,7 @@ const quotes = [
 const HeroSection = () => {
   return (
     <motion.div
-      className="text-center"
+      className="text-center py-16"
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{
@@ -39,8 +39,10 @@ const HeroSection = () => {
           className="text-green-500"
         />
       </div>
+      <SocialLinks />
     </motion.div>
   );
 };
 
 export default HeroSection;
+
