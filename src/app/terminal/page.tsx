@@ -160,26 +160,27 @@ export default function Terminal() {
   }
 
   return (
-    <section className="py-16 px-4" id="terminal">
+    <section className="py-4 sm:py-8 md:py-16 px-2 sm:px-4" id="terminal">
       <motion.div
         className="max-w-3xl mx-auto bg-[#1A1A1A] border border-[#00FF00] rounded-lg overflow-hidden shadow-lg shadow-[#00FF00]/20"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="flex items-center justify-between px-4 py-2 bg-[#0D0D0D] border-b border-[#00FF00]">
+        <div className="flex items-center justify-between px-2 sm:px-4 py-2 bg-[#0D0D0D] border-b border-[#00FF00]">
           <div className="flex items-center">
-            <div className="flex space-x-2 mr-4">
+            <div className="hidden sm:flex space-x-2 mr-4">
               <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
               <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
               <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
             </div>
-            <div className="flex items-center text-sm text-[#00FF00]">
-              <TerminalIcon className="w-4 h-4 mr-2" />
-              shelby@terminal:~$
+            <div className="flex items-center text-xs sm:text-sm text-[#00FF00]">
+              <TerminalIcon className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">shelby@terminal:~$</span>
+              <span className="sm:hidden">terminal:~$</span>
             </div>
           </div>
-          <div className="text-xs text-[#00FF00] opacity-50">
+          <div className="text-[10px] sm:text-xs text-[#00FF00] opacity-50">
             {new Date().toLocaleTimeString('en-US', {
               hour12: false,
               hour: '2-digit',
@@ -188,32 +189,49 @@ export default function Terminal() {
             })}
           </div>
         </div>
-        <div className="p-4 font-mono h-[480px] overflow-y-auto">
+        <div className="p-2 sm:p-4 font-mono h-[300px] sm:h-[400px] md:h-[480px] overflow-y-auto text-sm sm:text-base">
           {output.map((item, i) => (
             <div key={i} className="mb-2">
-              <div className="flex items-center text-[#00FF00]">
-                <span className="mr-2">$</span>
-                {item.icon && <span className="mr-2">{item.icon}</span>}
+              <div className="flex items-center text-[#00FF00] text-sm sm:text-base">
+                <span className="mr-1 sm:mr-2">$</span>
+                {item.icon && (
+                  <span className="mr-1 sm:mr-2 scale-75 sm:scale-100">
+                    {item.icon}
+                  </span>
+                )}
                 <span className="text-[#00D4FF]">{item.cmd}</span>
               </div>
-              <div className="text-[#FFFFFF] whitespace-pre-wrap ml-6">
+              <div
+                className="text-[#FFFFFF] whitespace-pre-wrap ml-4 sm:ml-6 text-xs sm:text-sm md:text-base overflow-x-auto"
+                style={{
+                  maxWidth: '100%',
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: '#00FF00 #1A1A1A',
+                }}
+              >
                 {item.response}
               </div>
             </div>
           ))}
           <form onSubmit={handleSubmit} className="flex items-center group">
-            <span className="text-[#00FF00] mr-2">$</span>
+            <span className="text-[#00FF00] mr-1 sm:mr-2 text-sm sm:text-base">
+              $
+            </span>
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="flex-1 bg-transparent text-[#00D4FF] outline-none group-focus-within:caret-[#00FF00]"
+              className="flex-1 bg-transparent text-[#00D4FF] outline-none group-focus-within:caret-[#00FF00] text-sm sm:text-base"
               autoFocus
               spellCheck="false"
+              style={{
+                caretColor: '#00FF00',
+                minWidth: '0',
+              }}
             />
             <span
-              className={`w-2 h-5 ml-1 bg-[#00FF00] ${
+              className={`w-1 sm:w-2 h-4 sm:h-5 ml-1 bg-[#00FF00] ${
                 cursorBlink ? 'opacity-100' : 'opacity-0'
               }`}
             />
