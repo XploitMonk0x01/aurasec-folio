@@ -2,8 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import SocialLinks from '@/components/SocialLinks';
-import { gsap } from 'gsap'; // Import GSAP
+import { Github, Linkedin } from 'lucide-react';
 
 const quotes = [
   "The best way to predict the future is to create it. - Peter Drucker",
@@ -18,26 +17,13 @@ const HeroSection = () => {
 
   useEffect(() => {
     const titleElement = titleRef.current;
-    const containerElement = containerRef.current;
 
+    // Add animations using GSAP
     gsap.fromTo(
       titleElement,
       { opacity: 0, y: -50 },
       { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
     );
-
-    // Add a Matrix-style background effect using GSAP
-    gsap.to(containerElement, {
-      duration: 10,
-      x: "+=200", // Move horizontally
-      y: "+=100", // Move vertically
-      rotation: 360, // Rotate
-      scale: 1.2,    // Scale up
-      opacity: 0.5,
-      repeat: -1,     // Infinite repeat
-      yoyo: true,      // Yoyo effect for a smooth loop
-      ease: "power1.inOut",
-    });
   }, []);
 
   return (
@@ -58,16 +44,62 @@ const HeroSection = () => {
       <p className="text-lg md:text-xl text-gray-300 mb-6">
         Cybersecurity Student | Milton University | 2nd Year
       </p>
-     {/*  <div className="terminal-style">
-        <TypeAnimation
-          sequence={quotes}
-          wrapper="span"
-          cursor={true}
-          repeat={Infinity}
-          className="text-green-500"
-        />
-      </div> */}
-      <SocialLinks />
+      <motion.div
+        className="flex space-x-6 mt-8 justify-center"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: {
+            transition: {
+              delayChildren: 0.8,
+              staggerChildren: 0.2,
+            },
+          },
+        }}
+      >
+        <motion.a
+          href="https://www.linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 hover:text-blue-400 glitch-effect"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+            hover: {
+              scale: 1.2,
+              textShadow: "0px 0px 8px rgb(0,255,255)",
+              transition: {
+                duration: 0.3,
+                yoyo: Infinity
+              }
+            },
+          }}
+          whileHover="hover"
+        >
+          <Linkedin className="h-8 w-8 glowing-icon" />
+        </motion.a>
+        <motion.a
+          href="https://github.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-purple-500 hover:text-purple-400 glitch-effect"
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+            hover: {
+              scale: 1.2,
+              textShadow: "0px 0px 8px rgb(0,255,255)",
+              transition: {
+                duration: 0.3,
+                yoyo: Infinity
+              }
+            },
+          }}
+          whileHover="hover"
+        >
+          <Github className="h-8 w-8 glowing-icon" />
+        </motion.a>
+      </motion.div>
     </motion.div>
   );
 };
