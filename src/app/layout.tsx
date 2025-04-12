@@ -24,6 +24,16 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
+const navigation = [
+    { name: 'Home', href: '/', icon: Icons.home },
+    { name: 'About', href: '/about', icon: Icons.user },
+    { name: 'Projects', href: '/projects', icon: Icons.workflow },
+    { name: 'Skills', href: '/skills', icon: Icons.code },
+    { name: 'Contact', href: '/contact', icon: Icons.mail },
+    { name: 'Certificates', href: '/certificates', icon: Icons.file },
+    { name: 'Terminal', href: '/terminal', icon: Icons.terminal },
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -91,76 +101,18 @@ export default function RootLayout({
               <SidebarGroup>
                 <SidebarGroupLabel>NAVIGATION</SidebarGroupLabel>
                 <SidebarMenu>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <Link href="/">
-                        <Icons.home className="mr-2 h-4 w-4" aria-hidden="true" />
-                        <span>Home</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <Link href="/about">
-                        <Icons.user className="mr-2 h-4 w-4" aria-hidden="true" />
-                        <span>About</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <Link href="/projects">
-                        <Icons.workflow className="mr-2 h-4 w-4" aria-hidden="true" />
-                        <span>Projects</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <Link href="/skills">
-                        <Icons.code className="mr-2 h-4 w-4" aria-hidden="true" />
-                        <span>Skills</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <Link href="/contact">
-                        <Icons.mail className="mr-2 h-4 w-4" aria-hidden="true" />
-                        <span>Contact</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <Link href="/certificates">
-                        <Icons.file className="mr-2 h-4 w-4" aria-hidden="true" />
-                        <span>Certificates</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild>
-                      <Link href="/terminal">
-                         <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="lucide lucide-terminal mr-2 h-4 w-4"
-                        >
-                          <polyline points="4 17 10 11 4 5" />
-                          <line x1="12" x2="20" y1="19" y2="19" />
-                        </svg>
-                        <span>Terminal</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
+                  {navigation.map((item) => (
+                      <SidebarMenuItem key={item.name}>
+                          <SidebarMenuButton asChild>
+                              <Link href={item.href}>
+                                  {item.icon && typeof item.icon === 'function' ? (
+                                      <item.icon className="mr-2 h-4 w-4" aria-hidden="true" />
+                                  ) : null}
+                                  <span>{item.name}</span>
+                              </Link>
+                          </SidebarMenuButton>
+                      </SidebarMenuItem>
+                  ))}
                 </SidebarMenu>
               </SidebarGroup>
             </SidebarContent>

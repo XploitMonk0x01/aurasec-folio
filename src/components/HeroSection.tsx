@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion';
 import SocialLinks from '@/components/SocialLinks';
 import { gsap } from 'gsap'; // Import GSAP
@@ -59,7 +58,7 @@ const HeroSection = () => {
       <p className="text-lg md:text-xl text-gray-300 mb-6">
         Cybersecurity Student | Milton University | 2nd Year
       </p>
-      <div className="terminal-style">
+     {/*  <div className="terminal-style">
         <TypeAnimation
           sequence={quotes}
           wrapper="span"
@@ -67,7 +66,7 @@ const HeroSection = () => {
           repeat={Infinity}
           className="text-green-500"
         />
-      </div>
+      </div> */}
       <SocialLinks />
     </motion.div>
   );
