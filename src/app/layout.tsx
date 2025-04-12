@@ -105,9 +105,9 @@ export default function RootLayout({
                       <SidebarMenuItem key={item.name}>
                           <SidebarMenuButton asChild>
                               <Link href={item.href}>
-                                  {item.icon && typeof item.icon === 'function' ? (
+                                  {item.icon && (
                                       <item.icon className="mr-2 h-4 w-4" aria-hidden="true" />
-                                  ) : null}
+                                  )}
                                   <span>{item.name}</span>
                               </Link>
                           </SidebarMenuButton>
