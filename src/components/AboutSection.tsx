@@ -31,13 +31,13 @@ const AboutSection = () => {
           <br />
           <p>
             My technical skills include:
-            <ul>
-              <li>- Penetration Testing</li>
-              <li>- Network Analysis</li>
-              <li>- Cryptography</li>
-              <li>- Security Auditing</li>
-            </ul>
           </p>
+          <ul>
+            <li>- Penetration Testing</li>
+            <li>- Network Analysis</li>
+            <li>- Cryptography</li>
+            <li>- Security Auditing</li>
+          </ul>
         </CardContent>
       </Card>
     </motion.section>
@@ -45,3 +45,4 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
+
