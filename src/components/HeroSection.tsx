@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Github, Linkedin } from 'lucide-react';
 import gsap from 'gsap';
+import { TextPlugin } from 'gsap/TextPlugin';
 
 const quotes = [
   "The best way to predict the future is to create it. - Peter Drucker",
@@ -16,22 +17,22 @@ const HeroSection = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
+    gsap.registerPlugin(TextPlugin);
+
     const titleElement = titleRef.current;
     const subtitleElement = subtitleRef.current;
 
     if (titleElement && subtitleElement) {
-      // Animate title
       gsap.fromTo(
         titleElement,
-        { opacity: 0, y: -50 },
-        { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
+        { opacity: 0, y: -50, text: "" },
+        { opacity: 1, y: 0, duration: 1.5, ease: 'power3.out', text: "Thomas Shelby" }
       );
 
-      // Animate subtitle
       gsap.fromTo(
         subtitleElement,
         { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.3 }
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.5 }
       );
     }
   }, []);
@@ -45,7 +46,6 @@ const HeroSection = () => {
         className="text-4xl md:text-5xl font-bold text-white mb-4 glitch neon-glow"
         ref={titleRef}
       >
-        Thomas Shelby
       </h1>
       <p
         className="text-lg md:text-xl text-gray-300 mb-6"
