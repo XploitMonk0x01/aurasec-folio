@@ -13,7 +13,7 @@ const AboutSection = () => {
   return (
     <motion.section
       id="about"
-      className="py-12"
+      className="py-6 md:py-12" // Adjusted py for mobile
       initial="hidden"
       animate="visible"
       variants={cardVariants}
@@ -23,7 +23,7 @@ const AboutSection = () => {
           <CardTitle className="text-2xl">About Me</CardTitle>
           <CardDescription>A brief overview of my background and interests.</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-4 md:p-6"> {/* Adjusted padding for mobile */}
           <p>
             I am a cybersecurity student at Milton University, currently in my 2nd year.
             I am passionate about network security, ethical hacking, and protecting digital assets.
@@ -45,4 +45,3 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
-

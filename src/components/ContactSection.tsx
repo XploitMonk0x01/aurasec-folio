@@ -13,7 +13,7 @@ const ContactSection = () => {
   return (
     <motion.section
       id="contact"
-      className="py-12"
+      className="py-6 md:py-12" // Adjusted py for mobile
       initial="hidden"
       animate="visible"
       variants={cardVariants}
@@ -23,7 +23,7 @@ const ContactSection = () => {
           <CardTitle className="text-2xl">Contact Me</CardTitle>
           <CardDescription>How to get in touch with me.</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-4 md:p-6"> {/* Adjusted padding for mobile */}
           <p>
             Feel free to reach out to me through the following channels:
           </p>

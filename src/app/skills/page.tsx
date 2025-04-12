@@ -41,7 +41,7 @@ const SkillsSection = () => {
   return (
     <motion.section
       id="skills"
-      className="py-12"
+      className="py-6 md:py-12"
       initial="hidden"
       animate="visible"
       variants={cardVariants}
@@ -52,17 +52,17 @@ const SkillsSection = () => {
           <CardDescription>My arsenal of tools and techniques.</CardDescription>
         </CardHeader>
         <CardContent>
-          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"> {/* Made grid responsive */}
             {skills.map((skill, index) => (
               <motion.li
                 key={skill.name}
                 variants={skillVariants}
                 custom={index}
                 whileHover="hover"
-                className="flex items-center space-x-4 p-4 bg-card rounded-md shadow-md transition-transform"
+                className="flex items-center space-x-2 md:space-x-4 p-2 md:p-4 bg-card rounded-md shadow-md transition-transform"
               >
-                <img src={skill.logo} alt={skill.name} className="h-8 w-8" />
-                <span className="text-lg">{skill.name}</span>
+                <img src={skill.logo} alt={skill.name} className="h-6 w-6 md:h-8 md:w-8" /> {/* Made image responsive */}
+                <span className="text-base md:text-lg">{skill.name}</span> {/* Made text responsive */}
               </motion.li>
             ))}
           </ul>
