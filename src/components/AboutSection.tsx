@@ -1,14 +1,24 @@
-'use client';
+'use client'
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import React from 'react'
+import { motion } from 'framer-motion'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 
 const AboutSection = () => {
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
-  };
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: 'easeOut' },
+    },
+  }
 
   return (
     <motion.section
@@ -21,27 +31,30 @@ const AboutSection = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">About Me</CardTitle>
-          <CardDescription>A brief overview of my background and interests.</CardDescription>
+          <CardDescription>
+            A brief overview of my background and interests.
+          </CardDescription>
         </CardHeader>
-        <CardContent className="p-4 md:p-6"> {/* Adjusted padding for mobile */}
+        <CardContent className="p-4 md:p-6">
+          {' '}
+          {/* Adjusted padding for mobile */}
           <p>
-            I am a cybersecurity student at Milton University, currently in my 2nd year.
-            I am passionate about network security, ethical hacking, and protecting digital assets.
+            I am a cybersecurity student at Parul University, currently in my
+            2nd year. I am passionate about network security, ethical hacking,
+            and protecting digital assets.
           </p>
           <br />
-          <p>
-            My technical skills include:
-          </p>
+          <p>My technical skills include:</p>
           <ul>
             <li>- Penetration Testing</li>
             <li>- Network Analysis</li>
-            <li>- Cryptography</li>
-            <li>- Security Auditing</li>
+            <li>- Cloud Security</li>
+            <li>- OSINT</li>
           </ul>
         </CardContent>
       </Card>
     </motion.section>
-  );
-};
+  )
+}
 
-export default AboutSection;
+export default AboutSection
