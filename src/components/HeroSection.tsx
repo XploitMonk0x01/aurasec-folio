@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin } from 'lucide-react';
-import gsap from 'gsap'; // Import GSAP for client-side usage
 
 const quotes = [
   "The best way to predict the future is to create it. - Peter Drucker",
@@ -13,19 +12,14 @@ const quotes = [
 ];
 
 const HeroSection = () => {
-  const titleRef = useRef(null);
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const titleElement = titleRef.current;
-
-    // Add animations using GSAP
-    gsap.fromTo(
-      titleElement,
-      { opacity: 0, y: -50 },
-      { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
-    );
-  }, []);
+  const titleVariants = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: 'easeOut' } },
+  };
+  const subtitleVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: 'easeOut' } },
+  };
 
   return (
     <motion.div
@@ -37,14 +31,23 @@ const HeroSection = () => {
         delay: 0.5,
         ease: [0, 0.71, 0.2, 1.01]
       }}
-      ref={containerRef}
     >
-      <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 glitch neon-glow" ref={titleRef}>
+      <motion.h1
+        className="text-4xl md:text-5xl font-bold text-white mb-4 glitch neon-glow"
+        variants={titleVariants}
+        initial="hidden"
+        animate="visible"
+      >
         Thomas Shelby
-      </h1>
-      <p className="text-lg md:text-xl text-gray-300 mb-6">
+      </motion.h1>
+      <motion.p
+        className="text-lg md:text-xl text-gray-300 mb-6"
+        variants={subtitleVariants}
+        initial="hidden"
+        animate="visible"
+      >
         Cybersecurity Student | Milton University | 2nd Year
-      </p>
+      </motion.p>
       <motion.div
         className="flex space-x-6 mt-8 justify-center"
         initial="hidden"
