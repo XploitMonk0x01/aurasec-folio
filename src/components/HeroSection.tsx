@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin } from 'lucide-react';
+import gsap from 'gsap'; // Import GSAP for client-side usage
 
 const quotes = [
   "The best way to predict the future is to create it. - Peter Drucker",
