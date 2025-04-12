@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
 import { Github, Linkedin } from 'lucide-react';
+import gsap from 'gsap';
 
 const quotes = [
   "The best way to predict the future is to create it. - Peter Drucker",
@@ -12,99 +12,68 @@ const quotes = [
 ];
 
 const HeroSection = () => {
-  const titleVariants = {
-    hidden: { opacity: 0, y: -50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: 'easeOut' } },
-  };
-  const subtitleVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: 'easeOut' } },
-  };
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const titleElement = titleRef.current;
+    const subtitleElement = subtitleRef.current;
+
+    if (titleElement && subtitleElement) {
+      // Animate title
+      gsap.fromTo(
+        titleElement,
+        { opacity: 0, y: -50 },
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
+      );
+
+      // Animate subtitle
+      gsap.fromTo(
+        subtitleElement,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.3 }
+      );
+    }
+  }, []);
 
   return (
-    <motion.div
+    <div
       className="text-center py-16 fade-in"
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 0.8,
-        delay: 0.5,
-        ease: [0, 0.71, 0.2, 1.01]
-      }}
+      style={{ opacity: 1, scale: 1 }}
     >
-      <motion.h1
+      <h1
         className="text-4xl md:text-5xl font-bold text-white mb-4 glitch neon-glow"
-        variants={titleVariants}
-        initial="hidden"
-        animate="visible"
+        ref={titleRef}
       >
         Thomas Shelby
-      </motion.h1>
-      <motion.p
+      </h1>
+      <p
         className="text-lg md:text-xl text-gray-300 mb-6"
-        variants={subtitleVariants}
-        initial="hidden"
-        animate="visible"
+        ref={subtitleRef}
       >
         Cybersecurity Student | Milton University | 2nd Year
-      </motion.p>
-      <motion.div
+      </p>
+      <div
         className="flex space-x-6 mt-8 justify-center"
-        initial="hidden"
-        animate="visible"
-        variants={{
-          visible: {
-            transition: {
-              delayChildren: 0.8,
-              staggerChildren: 0.2,
-            },
-          },
-        }}
       >
-        <motion.a
+        <a
           href="https://www.linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-500 hover:text-blue-400 glitch-effect"
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-            hover: {
-              scale: 1.2,
-              textShadow: "0px 0px 8px rgb(0,255,255)",
-              transition: {
-                duration: 0.3,
-                yoyo: Infinity
-              }
-            },
-          }}
-          whileHover="hover"
         >
           <Linkedin className="h-8 w-8 glowing-icon" />
-        </motion.a>
-        <motion.a
+        </a>
+        <a
           href="https://github.com"
           target="_blank"
           rel="noopener noreferrer"
           className="text-purple-500 hover:text-purple-400 glitch-effect"
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-            hover: {
-              scale: 1.2,
-              textShadow: "0px 0px 8px rgb(0,255,255)",
-              transition: {
-                duration: 0.3,
-                yoyo: Infinity
-              }
-            },
-          }}
-          whileHover="hover"
         >
           <Github className="h-8 w-8 glowing-icon" />
-        </motion.a>
-      </motion.div>
-    </motion.div>
+        </a>
+      </div>
+    </div>
   );
 };
 
