@@ -1,14 +1,24 @@
-'use client';
+'use client'
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import React from 'react'
+import { motion } from 'framer-motion'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 
 const ProjectsSection = () => {
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
-  };
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: 'easeOut' },
+    },
+  }
 
   return (
     <motion.section
@@ -21,29 +31,31 @@ const ProjectsSection = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl">Projects</CardTitle>
-          <CardDescription>A selection of projects I've worked on.</CardDescription>
+          <CardDescription>
+            A selection of projects I've worked on.
+          </CardDescription>
         </CardHeader>
-        <CardContent className="p-4 md:p-6"> {/* Adjusted padding for mobile */}
-          <p>
-            Here are some of the projects I've been involved in:
-          </p>
+        <CardContent className="p-4 md:p-6">
+          {' '}
+          {/* Adjusted padding for mobile */}
+          <p>Here are some of the projects I've been involved in:</p>
           <ul>
             <li>
-              - <b>Network Intrusion Detection System:</b> Developed a system to detect malicious activities
-              in a network using Snort.
+              - <b>A Netflix clone:</b> built using MERN stack and TMDB API.
+              Users can sign in, view trailers, and watch movies
             </li>
             <li>
-              - <b>Vulnerability Assessment of Web Applications:</b> Performed assessments on web applications
-              using tools like OWASP ZAP.
+              - <b>Iphone Website Clone:</b> A clone of the official Apple
+              website for Iphone 13. Stack: React, Tailwind CSS, Three js, GSAP
             </li>
             <li>
-              - <b>Cryptography Implementation:</b> Implemented encryption algorithms using Python.
+              - <b>Alumni Website</b> A website for the alumni of a university.
             </li>
           </ul>
         </CardContent>
       </Card>
     </motion.section>
-  );
-};
+  )
+}
 
-export default ProjectsSection;
+export default ProjectsSection

@@ -40,7 +40,7 @@ const AboutSection = () => {
           {/* Adjusted padding for mobile */}
           <p>
             I am a cybersecurity student at Parul University, currently in my
-            2nd year. I am passionate about network security, ethical hacking,
+            3rd year. I am passionate about network security, ethical hacking,
             and protecting digital assets.
           </p>
           <br />

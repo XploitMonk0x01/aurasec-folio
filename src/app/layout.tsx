@@ -90,30 +90,37 @@ export default function RootLayout({
 
   useEffect(() => {
     const initMatrix = () => {
-      const canvas = document.getElementById('matrix-canvas')
+      const canvas = document.getElementById(
+        'matrix-canvas'
+      ) as HTMLCanvasElement
       if (!canvas) return
 
-      const ctx = (canvas as HTMLCanvasElement).getContext('2d')
+      const ctx = canvas.getContext('2d')
       if (!ctx) return
 
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      // Set canvas size
+      const resizeCanvas = () => {
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+      }
+      resizeCanvas()
+      window.addEventListener('resize', resizeCanvas)
 
       const matrix = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-='
       const fontSize = 10
-      const columns = canvas.width / fontSize
+      const columns = Math.floor(canvas.width / fontSize)
 
-      const drops = []
-      for (let i = 0; i < columns; i++) {
-        drops[i] = 1
-      }
+      // Initialize drops array with proper typing
+      const drops: number[] = Array(columns).fill(1)
 
       const draw = () => {
+        // Semi-transparent black background for trail effect
         ctx.fillStyle = 'rgba(0, 0, 0, 0.04)'
         ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-        ctx.fillStyle = '#00FF00' // Green color for the matrix
-        ctx.font = `${fontSize}px arial`
+        // Green color for the matrix characters
+        ctx.fillStyle = '#00FF00'
+        ctx.font = `${fontSize}px monospace`
 
         for (let i = 0; i < columns; i++) {
           const text = matrix[Math.floor(Math.random() * matrix.length)]
@@ -126,10 +133,18 @@ export default function RootLayout({
         }
       }
 
-      setInterval(draw, 30)
+      // Start animation
+      const intervalId = setInterval(draw, 30)
+
+      // Cleanup function
+      return () => {
+        clearInterval(intervalId)
+        window.removeEventListener('resize', resizeCanvas)
+      }
     }
 
-    initMatrix()
+    const cleanup = initMatrix()
+    return cleanup
   }, [])
 
   return (

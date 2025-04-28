@@ -24,7 +24,7 @@ const HeroSection = () => {
 
       gsap.to(subtitleElement, {
         duration: 1.5,
-        text: 'Cybersecurity Student | Parul University | 2nd Year',
+        text: 'Cybersecurity Student | Parul University | 3rd Year',
         ease: 'power3.out',
         delay: 0.5,
       })
