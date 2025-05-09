@@ -49,7 +49,7 @@ const ProjectsSection = () => {
               website for Iphone 13. Stack: React, Tailwind CSS, Three js, GSAP
             </li>
             <li>
-              - <b>Alumni Website</b> A website for the alumni of a university.
+              - <b>Alumni Website:</b> A website for the alumni of a university.
             </li>
           </ul>
         </CardContent>

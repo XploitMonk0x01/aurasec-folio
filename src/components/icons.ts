@@ -1,5 +1,35 @@
-
-import {ArrowRight, Check, ChevronsUpDown, Circle, Code, Copy, Edit, ExternalLink, File, HelpCircle, Home, Loader2, Mail, MessageSquare, Moon, Plus, PlusCircle, Search, Server, Settings, Share2, Shield, Sun, Trash, User, Workflow, Github, Linkedin, X} from 'lucide-react';
+import {
+  ArrowRight,
+  Check,
+  ChevronsUpDown,
+  Circle,
+  Code,
+  Copy,
+  Edit,
+  ExternalLink,
+  File,
+  HelpCircle,
+  Home,
+  Loader2,
+  Mail,
+  MessageSquare,
+  Moon,
+  Plus,
+  PlusCircle,
+  Search,
+  Server,
+  Settings,
+  Share2,
+  Shield,
+  Sun,
+  Trash,
+  User,
+  Workflow,
+  Github,
+  Linkedin,
+  X,
+  Terminal,
+} from 'lucide-react'
 
 const Icons = {
   arrowRight: ArrowRight,
@@ -32,6 +62,7 @@ const Icons = {
   github: Github,
   linkedin: Linkedin,
   code: Code,
-};
+  terminal: Terminal,
+}
 
-export {Icons};
+export { Icons }
