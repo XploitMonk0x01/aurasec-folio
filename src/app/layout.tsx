@@ -230,7 +230,7 @@ export default function RootLayout({
           </SidebarInset>
         </SidebarProvider>
         <Toaster />
-        <Analytics debug={process.env.NODE_ENV === 'development'} />
+        <Analytics />
         <SpeedInsights />
       </body>
     </html>
