@@ -1,10 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    domains: ['vercel.com', 'aurasec-folio.vercel.app'],
-    formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 60,
-  },
   experimental: {
     optimizeCss: true,
     scrollRestoration: true,
