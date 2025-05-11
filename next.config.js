@@ -10,10 +10,6 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  // Enable Vercel Analytics
-  analyticsId: process.env.VERCEL_ANALYTICS_ID,
-  // Enable Vercel Speed Insights
-  speedInsights: true,
   // Optimize bundle size
   webpack: (config, { dev, isServer }) => {
     // Optimize only in production
@@ -23,10 +19,10 @@ const nextConfig = {
         react: 'preact/compat',
         'react-dom/test-utils': 'preact/test-utils',
         'react-dom': 'preact/compat',
-      });
+      })
     }
-    return config;
+    return config
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
