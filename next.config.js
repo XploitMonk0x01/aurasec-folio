@@ -1,13 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['vercel.com'],
+    domains: ['vercel.com', 'aurasec-folio.vercel.app'],
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
   },
   experimental: {
     optimizeCss: true,
     scrollRestoration: true,
+    serverActions: {
+      allowedOrigins: ['localhost:9002', 'aurasec-folio.vercel.app'],
+    },
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
@@ -16,10 +19,6 @@ const nextConfig = {
   analyticsId: process.env.VERCEL_ANALYTICS_ID,
   // Enable Vercel Speed Insights
   speedInsights: true,
-  // Enable Vercel Edge Functions
-  experimental: {
-    serverActions: true,
-  },
   // Optimize bundle size
   webpack: (config, { dev, isServer }) => {
     // Optimize only in production
