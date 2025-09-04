@@ -207,27 +207,25 @@ body.aurasec-theme {
   color: #00ffff;
 }
 
-/* Page content hide/show on scroll animations */
-.page-content {
-  transition: opacity 220ms ease, transform 220ms ease;
-  /* Default to visible */
-  opacity: 1;
-  transform: none;
-  pointer-events: auto;
-  user-select: auto;
-  visibility: visible;
+/* Page content animations now handled entirely by Motion library */
+/* Removed CSS transitions to prevent conflicts with Motion animations */
+
+/* Performance optimizations */
+.matrix-canvas {
+  will-change: opacity;
+  transform: translateZ(0); /* Force hardware acceleration */
 }
-.hide-on-scroll-up {
-  opacity: 0;
-  transform: translateY(-8px);
-  pointer-events: none;
-  user-select: none;
-  visibility: hidden;
+
+.motion-safe {
+  will-change: transform, opacity;
+  transform: translateZ(0); /* Force hardware acceleration */
 }
-.show-on-scroll-down {
-  opacity: 1;
-  transform: none;
-  pointer-events: auto;
-  user-select: auto;
-  visibility: visible;
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

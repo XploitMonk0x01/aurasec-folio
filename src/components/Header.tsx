@@ -1,19 +1,20 @@
 'use client'
 
-import React from 'react'
+import React, { memo } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/icons'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { motion } from 'motion/react'
 
-const Header: React.FC = () => {
+const Header: React.FC = memo(() => {
   return (
     <motion.header
       className="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-md"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      style={{ willChange: 'transform, opacity' }}
     >
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center space-x-4">
@@ -35,10 +36,10 @@ const Header: React.FC = () => {
                   ],
                 }}
                 transition={{
-                  rotate: { duration: 15, repeat: Infinity, ease: 'linear' },
-                  filter: { duration: 2.5, repeat: Infinity },
+                  rotate: { duration: 20, repeat: Infinity, ease: 'linear' },
+                  filter: { duration: 4, repeat: Infinity },
                 }}
-                whileHover={{ scale: 1.2 }}
+                whileHover={{ scale: 1.1 }}
               >
                 <Icons.shield
                   className="h-6 w-6 text-green-500"
@@ -50,14 +51,14 @@ const Header: React.FC = () => {
                 animate={{
                   textShadow: [
                     '0 0 5px #00ff00',
-                    '0 0 15px #00ff00, 0 0 25px #00ff00',
+                    '0 0 12px #00ff00, 0 0 20px #00ff00',
                     '0 0 5px #00ff00',
                   ],
                 }}
-                transition={{ duration: 3, repeat: Infinity }}
+                transition={{ duration: 4, repeat: Infinity }}
                 whileHover={{
-                  scale: 1.05,
-                  textShadow: '0 0 20px #00ff00',
+                  scale: 1.02,
+                  textShadow: '0 0 15px #00ff00',
                 }}
               >
                 Hacker's Portfolio
@@ -126,6 +127,8 @@ const Header: React.FC = () => {
       </div>
     </motion.header>
   )
-}
+})
+
+Header.displayName = 'Header'
 
 export default Header

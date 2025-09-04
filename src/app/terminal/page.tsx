@@ -1,5 +1,5 @@
 'use client'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { useState, useEffect } from 'react'
 import {
   Terminal as TerminalIcon,
@@ -33,9 +33,9 @@ const commands = [
     │   ├── Bash
     │   └── JavaScript
     └── Other Tools
-        ├── Linux
-        ├── CTF
-        └── IDS/IPS
+        ├── Redline
+        ├── FTK Imager
+        └── Autopsy
     `,
     icon: <Command className="w-4 h-4 text-green-400" />,
   },
@@ -44,8 +44,8 @@ const commands = [
     response: `
     🎓 Parul University
     ├── Degree: B.Tech IEP Quick Heal
-    ├── Year: 2nd Year
-    ├── GPA: 3.8/4.0
+    ├── Year: 3rd Year
+    ├── GPA: 7.74
     └── Key Courses:
         ├── Network Security
         ├── Ethical Hacking
@@ -60,7 +60,7 @@ const commands = [
     📧 Email: ethicalrobo06@gmail.com
     🐦 Twitter: @t_shelby
     💼 LinkedIn: /in/chandansemwal
-    🔐 HackTheBox: /thomas_shelby
+    🔐 TryHackMe: /XploitMonk0x01
     `,
     icon: <Mail className="w-4 h-4 text-purple-400" />,
   },
@@ -97,14 +97,43 @@ export default function Terminal() {
   const [history, setHistory] = useState<string[]>([])
   const [historyIndex, setHistoryIndex] = useState(-1)
   const [cursorBlink, setCursorBlink] = useState(true)
+  const [currentTime, setCurrentTime] = useState('')
+  const [isMounted, setIsMounted] = useState(false)
 
-  // Cursor blink effect
+  // Mount check for hydration safety
   useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  // Update time every second after mount
+  useEffect(() => {
+    if (!isMounted) return
+
+    const updateTime = () => {
+      setCurrentTime(
+        new Date().toLocaleTimeString('en-US', {
+          hour12: false,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+        })
+      )
+    }
+
+    updateTime() // Set initial time
+    const interval = setInterval(updateTime, 1000)
+    return () => clearInterval(interval)
+  }, [isMounted])
+
+  // Cursor blink effect - only start after mount
+  useEffect(() => {
+    if (!isMounted) return
+
     const interval = setInterval(() => {
       setCursorBlink((prev) => !prev)
     }, 530)
     return () => clearInterval(interval)
-  }, [])
+  }, [isMounted])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -181,12 +210,7 @@ export default function Terminal() {
             </div>
           </div>
           <div className="text-[10px] sm:text-xs text-[#00FF00] opacity-50">
-            {new Date().toLocaleTimeString('en-US', {
-              hour12: false,
-              hour: '2-digit',
-              minute: '2-digit',
-              second: '2-digit',
-            })}
+            {isMounted ? currentTime : '--:--:--'}
           </div>
         </div>
         <div className="p-2 sm:p-4 font-mono h-[300px] sm:h-[400px] md:h-[480px] overflow-y-auto text-sm sm:text-base">
@@ -230,11 +254,13 @@ export default function Terminal() {
                 minWidth: '0',
               }}
             />
-            <span
-              className={`w-1 sm:w-2 h-4 sm:h-5 ml-1 bg-[#00FF00] ${
-                cursorBlink ? 'opacity-100' : 'opacity-0'
-              }`}
-            />
+            {isMounted && (
+              <span
+                className={`w-1 sm:w-2 h-4 sm:h-5 ml-1 bg-[#00FF00] ${
+                  cursorBlink ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            )}
           </form>
         </div>
       </motion.div>
