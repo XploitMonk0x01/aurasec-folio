@@ -2,12 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Courier New', Courier, monospace;
-}
-
 @layer base {
   :root {
+    --font-geist-sans: 'Inter', system-ui, sans-serif;
+    --font-geist-mono: 'JetBrains Mono', 'Courier New', monospace;
     --background: 0 0% 5%;
     --foreground: 120 50% 80%;
     --card: 0 0% 10%;
@@ -85,7 +83,7 @@ body {
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
 }
 
@@ -100,56 +98,44 @@ body {
 }
 
 .glitch {
-  text-shadow:
-    0.03em 0 0 rgba(255, 0, 0, 0.75),
-    -0.03em 0 0 rgba(0, 255, 0, 0.75),
-    0 0.03em 0 rgba(0, 0, 255, 0.75),
+  text-shadow: 0.03em 0 0 rgba(255, 0, 0, 0.75),
+    -0.03em 0 0 rgba(0, 255, 0, 0.75), 0 0.03em 0 rgba(0, 0, 255, 0.75),
     0 0 0.1em rgba(255, 255, 255, 0.33);
   animation: glitch-anim 2s infinite linear alternate-reverse;
 }
 
 @keyframes glitch-anim {
   0% {
-    text-shadow:
-      0.06em 0 0 rgba(255, 0, 0, 0.75),
-      -0.06em 0 0 rgba(0, 255, 0, 0.75),
-      0 0.06em 0 rgba(0, 0, 255, 0.75),
+    text-shadow: 0.06em 0 0 rgba(255, 0, 0, 0.75),
+      -0.06em 0 0 rgba(0, 255, 0, 0.75), 0 0.06em 0 rgba(0, 0, 255, 0.75),
       0 0 0.1em rgba(255, 255, 255, 0.33);
     transform: translate(0.03em, -0.03em);
   }
 
   25% {
-    text-shadow:
-      -0.03em 0 0 rgba(255, 0, 0, 0.75),
-      0.03em 0 0 rgba(0, 255, 0, 0.75),
-      0 -0.03em 0 rgba(0, 0, 255, 0.75),
+    text-shadow: -0.03em 0 0 rgba(255, 0, 0, 0.75),
+      0.03em 0 0 rgba(0, 255, 0, 0.75), 0 -0.03em 0 rgba(0, 0, 255, 0.75),
       0 0 0.1em rgba(255, 255, 255, 0.33);
     transform: translate(-0.03em, 0.03em);
   }
 
   50% {
-    text-shadow:
-      0.09em 0 0 rgba(255, 0, 0, 0.75),
-      -0.09em 0 0 rgba(0, 255, 0, 0.75),
-      0 0.09em 0 rgba(0, 0, 255, 0.75),
+    text-shadow: 0.09em 0 0 rgba(255, 0, 0, 0.75),
+      -0.09em 0 0 rgba(0, 255, 0, 0.75), 0 0.09em 0 rgba(0, 0, 255, 0.75),
       0 0 0.1em rgba(255, 255, 255, 0.33);
     transform: translate(0.06em, -0.06em);
   }
 
   75% {
-    text-shadow:
-      -0.06em 0 0 rgba(255, 0, 0, 0.75),
-      0.06em 0 0 rgba(0, 255, 0, 0.75),
-      0 -0.06em 0 rgba(0, 0, 255, 0.75),
+    text-shadow: -0.06em 0 0 rgba(255, 0, 0, 0.75),
+      0.06em 0 0 rgba(0, 255, 0, 0.75), 0 -0.06em 0 rgba(0, 0, 255, 0.75),
       0 0 0.1em rgba(255, 255, 255, 0.33);
     transform: translate(-0.06em, 0.06em);
   }
 
   100% {
-    text-shadow:
-      0.03em 0 0 rgba(255, 0, 0, 0.75),
-      -0.03em 0 0 rgba(0, 255, 0, 0.75),
-      0 0.03em 0 rgba(0, 0, 255, 0.75),
+    text-shadow: 0.03em 0 0 rgba(255, 0, 0, 0.75),
+      -0.03em 0 0 rgba(0, 255, 0, 0.75), 0 0.03em 0 rgba(0, 0, 255, 0.75),
       0 0 0.1em rgba(255, 255, 255, 0.33);
     transform: translate(0.03em, -0.03em);
   }
@@ -161,13 +147,8 @@ body {
 
 /* Neon glow effect */
 .neon-glow {
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #fff,
-    0 0 15px #00FFFF,
-    0 0 20px #00FFFF,
-    0 0 25px #00FFFF,
-    0 0 30px #00FFFF;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #00ffff, 0 0 20px #00ffff,
+    0 0 25px #00ffff, 0 0 30px #00ffff;
 }
 
 /* Animation for transitions */
@@ -197,31 +178,56 @@ body {
 /* Matrix Effect Text Style */
 .matrix-text {
   font-family: 'Courier New', Courier, monospace;
-  color: #00FF00; /* Electric Green */
+  color: #00ff00; /* Electric Green */
   font-size: 16px;
-  text-shadow: 0 0 5px #00FF00;
+  text-shadow: 0 0 5px #00ff00;
 }
 
 /* Add more themes here */
 .hacker-theme-one {
   --background: #000000; /* Black */
-  --foreground: #00FF00; /* Electric Green */
-  --accent: #00FFFF; /* Neon Blue */
+  --foreground: #00ff00; /* Electric Green */
+  --accent: #00ffff; /* Neon Blue */
 }
 
 .hacker-theme-two {
   --background: #121212; /* Dark Gray */
   --foreground: #800080; /* Purple */
-  --accent: #00FF00; /* Electric Green */
+  --accent: #00ff00; /* Electric Green */
 }
 
 .aurasec-theme {
-    --background: #121212; /* Dark Gray */
-    --foreground: #00FFFF; /* Neon Blue */
-    --accent: #800080; /* Purple */
+  --background: #121212; /* Dark Gray */
+  --foreground: #00ffff; /* Neon Blue */
+  --accent: #800080; /* Purple */
 }
 
 body.aurasec-theme {
-    background-color: #121212;
-    color: #00FFFF;
+  background-color: #121212;
+  color: #00ffff;
+}
+
+/* Page content hide/show on scroll animations */
+.page-content {
+  transition: opacity 220ms ease, transform 220ms ease;
+  /* Default to visible */
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  user-select: auto;
+  visibility: visible;
+}
+.hide-on-scroll-up {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  user-select: none;
+  visibility: hidden;
+}
+.show-on-scroll-down {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  user-select: auto;
+  visibility: visible;
 }

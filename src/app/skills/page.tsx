@@ -13,13 +13,13 @@ import {
 } from '@/components/ui/card'
 
 const skills = [
-  { name: 'VAPT', logo: '/images/skills/vapt.png' },
+  { name: 'Digital Forensics', logo: '/images/skills/network.png' },
   { name: 'Network Analysis', logo: '/images/skills/network.png' },
   { name: 'OSINT', logo: '/images/skills/osint.png' },
-  { name: 'Security Auditing', logo: '/images/skills/auditing.png' },
   { name: 'Incident Response', logo: '/images/skills/response.png' },
   { name: 'Cloud Security', logo: '/images/skills/cloud.png' },
   { name: 'Prompt Engineering', logo: '/images/skills/prompt.png' },
+  { name: 'VAPT', logo: '/images/skills/vapt.png' },
 ]
 
 const SkillsSection = () => {

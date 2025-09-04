@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Cybersecurity Portfolio',
+  title: "Hacker's Portfolio",
   description: 'Created with the help of Ai',
 }

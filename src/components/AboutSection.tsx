@@ -76,17 +76,18 @@ const AboutSection = () => {
         </CardHeader>
         <CardContent ref={contentRef} className="p-4 md:p-6">
           <p>
-            I am a cybersecurity student at Parul University, currently in my
-            3rd year. I am passionate about network security, ethical hacking,
-            and protecting digital assets.
+            I am a cybersecurity student at Parul University (3rd year). I’m
+            passionate about network security, ethical hacking, and protecting
+            digital assets. I also build web and Android apps.
           </p>
           <br />
           <p>My technical skills include:</p>
           <ul>
-            <li>- Penetration Testing</li>
-            <li>- Network Analysis</li>
+            <li>- Digital Forensics</li>
             <li>- Cloud Security</li>
             <li>- OSINT</li>
+            <li>- VAPT</li>
+            <li>- Network Analysis</li>
           </ul>
         </CardContent>
       </Card>
