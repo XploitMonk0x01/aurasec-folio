@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -11,12 +11,17 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { PGPKeyDisplay } from '@/components/PGPKeyDisplay'
+import { pgpPublicKey } from '@/config/security'
+import { Button } from '@/components/ui/button'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const contactListRef = useRef<HTMLUListElement>(null)
+  const [showPGP, setShowPGP] = useState(false)
 
   useGSAP(() => {
     const ctx = gsap.context(() => {
@@ -156,6 +161,54 @@ const ContactSection = () => {
               </a>
             </li>
           </ul>
+
+          {/* PGP Key Section */}
+          <div className="mt-8 pt-6 border-t border-green-500/20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <Button
+                onClick={() => setShowPGP(!showPGP)}
+                variant="outline"
+                className="w-full sm:w-auto font-mono text-green-400 border-green-500/50 hover:border-green-500 hover:bg-green-500/10 transition-all duration-300"
+              >
+                <span className="mr-2">🔐</span>
+                {showPGP ? '[ HIDE PGP KEY ]' : '[ SHOW PGP PUBLIC KEY ]'}
+                <span className="ml-2 inline-block animate-pulse">_</span>
+              </Button>
+
+              <AnimatePresence>
+                {showPGP && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0, y: -20 }}
+                    animate={{ opacity: 1, height: 'auto', y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -20 }}
+                    transition={{ duration: 0.4, ease: 'easeInOut' }}
+                    className="mt-4 overflow-hidden"
+                  >
+                    <div className="relative">
+                      {/* Cyberpunk border effect */}
+                      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-green-500/20 via-blue-500/20 to-purple-500/20 blur-sm" />
+                      <div className="relative">
+                        <PGPKeyDisplay pgpKey={pgpPublicKey} />
+                      </div>
+                    </div>
+
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                      className="mt-3 text-xs text-gray-500 font-mono"
+                    >
+                      💡 Use this key to send me encrypted messages
+                    </motion.p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          </div>
         </CardContent>
       </Card>
     </section>

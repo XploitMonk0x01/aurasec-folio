@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '@xterm/xterm/css/xterm.css';
+
 @layer base {
   :root {
     --font-geist-sans: 'Inter', system-ui, sans-serif;
@@ -83,7 +85,29 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-bg900 text-primary font-sans antialiased;
+  }
+
+  /* Terminal styling */
+  .terminal-window {
+    @apply bg-panel backdrop-blur-sm rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.6)] p-4;
+  }
+
+  .terminal-header {
+    @apply flex items-center gap-2 px-3 py-2 bg-[rgba(0,0,0,0.35)] rounded-t-xl border-b border-[rgba(255,255,255,0.03)];
+  }
+
+  /* Neon buttons and effects */
+  .btn-neon {
+    @apply px-3 py-1 rounded-md ring-1 ring-neon/40 hover:ring-neon transition-all;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 8px currentColor;
+  }
+
+  .neon-glow {
+    filter: drop-shadow(0 0 8px theme('colors.neon'));
   }
 }
 

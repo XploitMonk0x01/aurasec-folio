@@ -4,6 +4,8 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+import dynamic from 'next/dynamic'
+import { useHotkeys } from '@/lib/hooks/useHotkeys'
 import { Toaster } from '@/components/ui/toaster'
 import {
   Sidebar,
@@ -31,6 +33,7 @@ import { useRouter } from 'next/navigation'
 import { useSidebar } from '@/components/ui/sidebar'
 import Header from '@/components/Header'
 import { motion } from 'motion/react'
+import { BootSequence } from '@/components/BootSequence'
 
 const geistSans = Inter({
   variable: '--font-geist-sans',
@@ -153,6 +156,7 @@ export default function RootLayout({
   const router = useRouter()
   const pageContentRef = useRef<HTMLDivElement>(null)
   const [isMounted, setIsMounted] = useState(false)
+  const [showBootSequence, setShowBootSequence] = useState(false)
   const matrixCleanupRef = useRef<(() => void) | null>(null)
 
   // Memoized Matrix initialization to prevent recreation
@@ -233,6 +237,12 @@ export default function RootLayout({
 
     // Only run client-side code after mount
     if (typeof window !== 'undefined') {
+      // Check if boot sequence has been shown this session
+      const hasSeenBoot = sessionStorage.getItem('bootSequenceShown')
+      if (!hasSeenBoot) {
+        setShowBootSequence(true)
+      }
+
       // Initialize Matrix with cleanup reference
       matrixCleanupRef.current = initMatrix()
     }
@@ -244,6 +254,13 @@ export default function RootLayout({
       }
     }
   }, [initMatrix])
+
+  const handleBootComplete = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('bootSequenceShown', 'true')
+    }
+    setShowBootSequence(false)
+  }, [])
 
   return (
     <html lang="en" className="dark">
@@ -259,6 +276,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased aurasec-theme dark`}
       >
+        {/* Boot sequence - shows once per session */}
+        {showBootSequence && <BootSequence onComplete={handleBootComplete} />}
+
         {/* Matrix canvas - always visible and more prominent */}
         <motion.canvas
           id="matrix-canvas"

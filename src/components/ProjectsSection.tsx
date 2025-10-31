@@ -4,13 +4,8 @@ import React, { useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { ProjectCard } from '@/components/projects/ProjectCard'
+import { projects } from '@/config/projects'
 
 const ProjectsSection = () => {
   const sectionRef = useRef<HTMLElement>(null)
@@ -91,30 +86,14 @@ const ProjectsSection = () => {
 
   return (
     <section ref={sectionRef} id="projects" className="py-6 md:py-12">
-      <Card ref={cardRef}>
-        <CardHeader>
-          <CardTitle className="text-2xl">Projects</CardTitle>
-          <CardDescription>
-            A selection of projects I've worked on.
-          </CardDescription>
-        </CardHeader>
-        <CardContent ref={contentRef} className="p-4 md:p-6">
-          <p>Here are some of the projects I've been involved in:</p>
-          <ul ref={projectListRef} className="mt-4 space-y-2">
-            <li>
-              - <b>A Netflix clone:</b> built using MERN stack and TMDB API.
-              Users can sign in, view trailers, and watch movies
-            </li>
-            <li>
-              - <b>Iphone Website Clone:</b> A clone of the official Apple
-              website for Iphone 13. Stack: React, Tailwind CSS, Three js, GSAP
-            </li>
-            <li>
-              - <b>Alumni Website:</b> A website for the alumni of a university.
-            </li>
-          </ul>
-        </CardContent>
-      </Card>
+      <div className="container mx-auto">
+        <h2 className="text-3xl font-mono text-neon mb-8">Projects.run</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <ProjectCard key={project.id} {...project} />
+          ))}
+        </div>
+      </div>
     </section>
   )
 }

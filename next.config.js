@@ -7,8 +7,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Set the correct workspace root to silence the lockfile warning
-  outputFileTracingRoot: __dirname,
 }
 
 module.exports = nextConfig
