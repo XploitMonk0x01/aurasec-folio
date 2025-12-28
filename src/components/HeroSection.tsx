@@ -15,7 +15,8 @@ const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
-    const ctx = gsap.context(() => {
+    // Wait a frame to ensure DOM is ready
+    const timeout = setTimeout(() => {
       gsap.registerPlugin(TextPlugin, ScrollTrigger)
 
       // Container animation
@@ -32,29 +33,13 @@ const HeroSection = () => {
         )
       }
 
-      // Title animation
-      if (titleRef.current) {
-        gsap.to(titleRef.current, {
-          duration: 2,
-          text: 'Chandan Semwal',
-          ease: 'power3.out',
-        })
-      }
-
-      // Subtitle animation
-      if (subtitleRef.current) {
-        gsap.to(subtitleRef.current, {
-          duration: 1.5,
-          text: 'Cybersecurity Student | Parul University | 3rd Year',
-          ease: 'power3.out',
-          delay: 0.5,
-        })
-      }
-
       // Social icons animation
-      if (socialIconsRef.current?.children) {
+      if (
+        socialIconsRef.current?.children &&
+        socialIconsRef.current.children.length > 0
+      ) {
         gsap.fromTo(
-          socialIconsRef.current.children,
+          Array.from(socialIconsRef.current.children),
           { opacity: 0, y: 20 },
           {
             opacity: 1,
@@ -62,20 +47,19 @@ const HeroSection = () => {
             duration: 0.8,
             stagger: 0.2,
             ease: 'back.out(1.7)',
-            delay: 1.5,
+            delay: 0.5,
           }
         )
       }
-    }, containerRef)
+    }, 100)
 
-    return () => ctx.revert() // Cleanup
+    return () => clearTimeout(timeout)
   }, [])
 
   return (
     <motion.div
       ref={containerRef}
       className="text-center py-8 md:py-16"
-      style={{ opacity: 0 }}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, ease: 'easeOut' }}
@@ -87,7 +71,7 @@ const HeroSection = () => {
       viewport={{ once: false, amount: 0.3 }}
     >
       <motion.h1
-        className="text-3xl md:text-5xl font-bold text-white mb-2 md:mb-4 glitch neon-glow"
+        className="text-3xl md:text-5xl font-bold text-green-400 mb-2 md:mb-4 glitch neon-glow"
         ref={titleRef}
         initial={{ opacity: 0, y: -50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -97,9 +81,11 @@ const HeroSection = () => {
           scale: 1.05,
           textShadow: '0 0 20px #00ff00, 0 0 40px #00ff00',
         }}
-      ></motion.h1>
+      >
+        Chandan Semwal
+      </motion.h1>
       <motion.p
-        className="text-lg md:text-xl text-gray-300 mb-4 md:mb-6"
+        className="text-lg md:text-xl text-cyan-300 mb-4 md:mb-6"
         ref={subtitleRef}
         initial={{ opacity: 0, x: -100 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -109,7 +95,9 @@ const HeroSection = () => {
           color: '#00ff00',
           scale: 1.02,
         }}
-      ></motion.p>
+      >
+        Cybersecurity Student | Parul University | 3rd Year
+      </motion.p>
       <motion.div
         ref={socialIconsRef}
         className="flex space-x-4 md:space-x-6 mt-4 md:mt-8 justify-center"

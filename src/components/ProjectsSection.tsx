@@ -14,56 +14,37 @@ const ProjectsSection = () => {
   const projectListRef = useRef<HTMLUListElement>(null)
 
   useGSAP(() => {
-    const ctx = gsap.context(() => {
-      gsap.registerPlugin(ScrollTrigger)
+    gsap.registerPlugin(ScrollTrigger)
 
+    // Wait a frame to ensure DOM is ready
+    const timeout = setTimeout(() => {
       // Card animation
-      gsap.fromTo(
-        cardRef.current,
-        { y: 100, opacity: 0 },
-        {
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            end: 'top 20%',
-            toggleActions: 'play none none reverse',
-          },
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: 'power3.out',
-        }
-      )
-
-      // Header animation
-      const headerElements = [
-        cardRef.current?.querySelector('h2'),
-        cardRef.current?.querySelector('p'),
-      ].filter(Boolean)
-
-      if (headerElements.length) {
+      if (cardRef.current && sectionRef.current) {
         gsap.fromTo(
-          headerElements,
-          { y: 30, opacity: 0 },
+          cardRef.current,
+          { y: 100, opacity: 0 },
           {
             scrollTrigger: {
-              trigger: contentRef.current,
+              trigger: sectionRef.current,
               start: 'top 80%',
+              end: 'top 20%',
               toggleActions: 'play none none reverse',
             },
             y: 0,
             opacity: 1,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: 'power2.out',
+            duration: 1,
+            ease: 'power3.out',
           }
         )
       }
 
       // Project list items animation
-      if (projectListRef.current?.children) {
+      if (
+        projectListRef.current?.children &&
+        projectListRef.current.children.length > 0
+      ) {
         gsap.fromTo(
-          projectListRef.current.children,
+          Array.from(projectListRef.current.children),
           { x: -50, opacity: 0 },
           {
             scrollTrigger: {
@@ -79,15 +60,17 @@ const ProjectsSection = () => {
           }
         )
       }
-    }, sectionRef)
+    }, 100)
 
-    return () => ctx.revert() // Cleanup
+    return () => clearTimeout(timeout)
   }, [])
 
   return (
     <section ref={sectionRef} id="projects" className="py-6 md:py-12">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-mono text-neon mb-8">Projects.run</h2>
+        <h2 className="text-3xl font-mono text-green-400 mb-8 neon-glow">
+          Projects.run
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
             <ProjectCard key={project.id} {...project} />

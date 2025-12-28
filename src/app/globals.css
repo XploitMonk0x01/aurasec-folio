@@ -82,10 +82,18 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    @apply overflow-x-hidden;
+    max-width: 100vw;
   }
 
   body {
     @apply bg-bg900 text-primary font-sans antialiased;
+    min-height: 100vh;
   }
 
   /* Terminal styling */
@@ -209,27 +217,25 @@
 
 /* Add more themes here */
 .hacker-theme-one {
-  --background: #000000; /* Black */
-  --foreground: #00ff00; /* Electric Green */
-  --accent: #00ffff; /* Neon Blue */
+  /* Use HSL triplets because Tailwind semantic colors use hsl(var(--token)) */
+  --background: 0 0% 0%; /* Black */
+  --foreground: 120 100% 65%; /* Electric Green */
+  --accent: 180 100% 60%; /* Neon Blue */
 }
 
 .hacker-theme-two {
-  --background: #121212; /* Dark Gray */
-  --foreground: #800080; /* Purple */
-  --accent: #00ff00; /* Electric Green */
+  --background: 0 0% 7%; /* Dark Gray */
+  --foreground: 285 75% 70%; /* Purple */
+  --accent: 120 100% 60%; /* Electric Green */
 }
 
 .aurasec-theme {
-  --background: #121212; /* Dark Gray */
-  --foreground: #00ffff; /* Neon Blue */
-  --accent: #800080; /* Purple */
+  --background: 0 0% 7%; /* Dark Gray */
+  --foreground: 180 100% 85%; /* Neon Blue */
+  --accent: 285 75% 70%; /* Purple */
 }
 
-body.aurasec-theme {
-  background-color: #121212;
-  color: #00ffff;
-}
+/* Note: Avoid overriding background/color here with hex; rely on semantic tokens */
 
 /* Page content animations now handled entirely by Motion library */
 /* Removed CSS transitions to prevent conflicts with Motion animations */

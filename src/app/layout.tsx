@@ -27,7 +27,6 @@ import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/icons'
 import Link from 'next/link'
 import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react'
-import * as THREE from 'three'
 // import { CertificatesSection } from '@/components/CertificatesSection'
 import { useRouter } from 'next/navigation'
 import { useSidebar } from '@/components/ui/sidebar'
@@ -391,46 +390,13 @@ export default function RootLayout({
             >
               <Header />
             </motion.div>
-            <main className="flex-1 pt-16">
-              <motion.div
+            <main className="flex-1 pt-16 overflow-x-hidden">
+              <div
                 ref={pageContentRef}
-                className="container py-12"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{
-                  opacity: 1, // Always visible - removed scroll hiding
-                  y: 0,
-                  scale: 1,
-                }}
-                transition={{
-                  duration: 0.6,
-                  ease: 'easeOut',
-                }}
-                style={{
-                  willChange: 'transform, opacity',
-                }}
+                className="container py-12 max-w-full overflow-x-hidden"
               >
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8, duration: 0.8 }}
-                  whileInView={{
-                    opacity: 1,
-                    transition: {
-                      staggerChildren: 0.1,
-                      delayChildren: 0.2,
-                    },
-                  }}
-                  viewport={{ once: false }}
-                >
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: false }}
-                  >
-                    {children}
-                  </motion.div>
-                </motion.div>
+                {/* Simplified: removed nested motion wrappers that were hiding content */}
+                {children}
 
                 {/* Background effects - only render after mount to prevent hydration issues */}
                 {isMounted && (
@@ -547,7 +513,7 @@ export default function RootLayout({
                     </motion.div>
                   </>
                 )}
-              </motion.div>
+              </div>
             </main>
           </SidebarInset>
         </SidebarProvider>

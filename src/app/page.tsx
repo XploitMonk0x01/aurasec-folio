@@ -40,14 +40,16 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen">
-      {/* Layered background effects */}
-      <div className="fixed inset-0 -z-20 bg-bg900" />
+      {/* 3D Background - now at z-0 so it's visible behind content */}
       <BackgroundScene />
-      <div className="fixed inset-0 -z-10 opacity-40">
+
+      {/* Matrix overlay - subtle effect */}
+      <div className="fixed inset-0 z-[1] opacity-20 pointer-events-none">
         <MatrixCanvas />
       </div>
 
-      <div className="relative z-10">
+      {/* Main content - above backgrounds */}
+      <div className="relative z-[2]">
         <div className="container mx-auto px-4">
           <HeroSection />
           <AboutSection />

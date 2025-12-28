@@ -24,9 +24,10 @@ const ContactSection = () => {
   const [showPGP, setShowPGP] = useState(false)
 
   useGSAP(() => {
-    const ctx = gsap.context(() => {
-      gsap.registerPlugin(ScrollTrigger)
+    gsap.registerPlugin(ScrollTrigger)
 
+    // Wait a frame to ensure DOM is ready
+    const timeout = setTimeout(() => {
       // Card animation
       if (cardRef.current && sectionRef.current) {
         gsap.fromTo(
@@ -47,37 +48,13 @@ const ContactSection = () => {
         )
       }
 
-      // Header animation
-      if (cardRef.current) {
-        const headerElements = [
-          cardRef.current.querySelector('h2'),
-          cardRef.current.querySelector('p'),
-        ].filter(Boolean)
-
-        if (headerElements.length) {
-          gsap.fromTo(
-            headerElements,
-            { y: 30, opacity: 0 },
-            {
-              scrollTrigger: {
-                trigger: contentRef.current,
-                start: 'top 80%',
-                toggleActions: 'play none none reverse',
-              },
-              y: 0,
-              opacity: 1,
-              duration: 0.8,
-              stagger: 0.2,
-              ease: 'power2.out',
-            }
-          )
-        }
-      }
-
       // Contact list items animation
-      if (contactListRef.current?.children) {
+      if (
+        contactListRef.current?.children &&
+        contactListRef.current.children.length > 0
+      ) {
         gsap.fromTo(
-          contactListRef.current.children,
+          Array.from(contactListRef.current.children),
           { x: -50, opacity: 0 },
           {
             scrollTrigger: {
@@ -93,42 +70,25 @@ const ContactSection = () => {
           }
         )
       }
+    }, 100)
 
-      // Link hover animations
-      if (contentRef.current) {
-        const links = contentRef.current.querySelectorAll('a')
-        links.forEach((link) => {
-          link.addEventListener('mouseenter', () => {
-            gsap.to(link, {
-              scale: 1.05,
-              duration: 0.3,
-              ease: 'power2.out',
-            })
-          })
-          link.addEventListener('mouseleave', () => {
-            gsap.to(link, {
-              scale: 1,
-              duration: 0.3,
-              ease: 'power2.out',
-            })
-          })
-        })
-      }
-    }, sectionRef)
-
-    return () => ctx.revert() // Cleanup
+    return () => clearTimeout(timeout)
   }, [])
 
   return (
     <section ref={sectionRef} id="contact" className="py-6 md:py-12">
       <Card ref={cardRef}>
         <CardHeader>
-          <CardTitle className="text-2xl">Contact Me</CardTitle>
-          <CardDescription>How to get in touch with me.</CardDescription>
+          <CardTitle className="text-2xl text-green-400">Contact Me</CardTitle>
+          <CardDescription className="text-cyan-300">
+            How to get in touch with me.
+          </CardDescription>
         </CardHeader>
-        <CardContent ref={contentRef} className="p-4 md:p-6">
-          <p>Feel free to reach out to me through the following channels:</p>
-          <ul ref={contactListRef} className="mt-4 space-y-2">
+        <CardContent ref={contentRef} className="p-4 md:p-6 text-green-100">
+          <p className="text-cyan-200">
+            Feel free to reach out to me through the following channels:
+          </p>
+          <ul ref={contactListRef} className="mt-4 space-y-2 text-green-200">
             <li>
               - <b>Email:</b>{' '}
               <a
