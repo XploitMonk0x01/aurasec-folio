@@ -1,6 +1,29 @@
 # AuraSec Folio
 
-Personal portfolio built with Next.js (App Router) + Tailwind, using Bun for package management.
+A cutting-edge, hacker-themed portfolio website built for cybersecurity professionals. Features advanced Matrix-style animations, interactive terminal interface, and modern web technologies.
+
+![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
+![Tailwind](https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwindcss)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
+
+## Features
+
+- 🔒 Cybersecurity/hacker-themed design
+- ⚡ Interactive terminal component with typing animation
+- 🎯 Smooth scroll navigation
+- 📊 Real-time stats from GitHub & TryHackMe profiles
+- 🎨 Framer Motion animations throughout
+- 📱 Fully responsive (mobile-first)
+- 🚀 Deployed on Vercel
+
+## Tech Stack
+
+- **Framework:** Next.js 15 (App Router, Turbopack)
+- **UI:** React 19, Tailwind CSS 4, Framer Motion
+- **Language:** TypeScript
+- **Package Manager:** Bun
+- **Deployment:** Vercel
 
 ## Prerequisites
 
