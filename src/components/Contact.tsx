@@ -8,12 +8,23 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 px-6 bg-tactical-black/80 backdrop-blur-sm"
+      className="bg-tactical-black/80 px-6 py-24 backdrop-blur-sm"
     >
       <div className="mx-auto max-w-7xl">
-        <h2 className="mb-12 text-center text-4xl font-stencil text-white md:text-6xl">
-          <span className="text-cyber-red">_</span>ESTABLISH_COMMUNICATION
-        </h2>
+        <div className="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-[0.45em] text-cyber-red">
+              secure channel
+            </p>
+            <h2 className="mt-3 text-4xl text-white md:text-6xl">
+              ESTABLISH_COMMUNICATION
+            </h2>
+          </div>
+          <p className="max-w-xl font-mono text-sm leading-relaxed text-zinc-400">
+            Open for security collaboration, project work, learning circles,
+            and practical cyber or app-building missions.
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           <motion.div
@@ -50,9 +61,10 @@ export function Contact() {
           </motion.div>
 
           <motion.form
+            onSubmit={(event) => event.preventDefault()}
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className="space-y-6"
+            className="border border-cyber-red/15 bg-black/45 p-6 space-y-6"
           >
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div className="space-y-2">

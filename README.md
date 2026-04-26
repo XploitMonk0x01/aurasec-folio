@@ -1,26 +1,26 @@
-# AuraSec Folio
+# Aura Operator
 
-A cutting-edge, hacker-themed portfolio website built for cybersecurity professionals. Features advanced Matrix-style animations, interactive terminal interface, and modern web technologies.
+An interactive cyber-operator portfolio for Chandan Singh, built as a mission console with a command terminal, ATC-style capability topology, Three.js interface lab, project dossiers, certifications, and Medium dispatches.
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
 ![Tailwind](https://img.shields.io/badge/Tailwind-4-38B2AC?logo=tailwindcss)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
 
 ## Features
 
-- 🔒 Cybersecurity/hacker-themed design
-- ⚡ Interactive terminal component with typing animation
-- 🎯 Smooth scroll navigation
-- 📊 Real-time stats from GitHub & TryHackMe profiles
-- 🎨 Framer Motion animations throughout
-- 📱 Fully responsive (mobile-first)
-- 🚀 Deployed on Vercel
+- Interactive command terminal
+- ATC-style cyber capability topology
+- Three.js frontend interface lab
+- Project case-file dossiers
+- Medium blog dispatch section
+- Certification filtering
+- Responsive, mobile-first tactical UI
 
 ## Tech Stack
 
-- **Framework:** Next.js 15 (App Router, Turbopack)
-- **UI:** React 19, Tailwind CSS 4, Framer Motion
+- **Framework:** Next.js 16 (App Router, Turbopack)
+- **UI:** React 19, Tailwind CSS 4, Framer Motion, Three.js
 - **Language:** TypeScript
 - **Package Manager:** Bun
 - **Deployment:** Vercel

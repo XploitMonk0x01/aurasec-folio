@@ -5,8 +5,9 @@ import ErrorReporter from '@/components/ErrorReporter'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Service Record',
-  description: 'Personal Portfolio website',
+  title: 'Aura Operator',
+  description:
+    'Interactive cyber-operator portfolio for DFIR, OSINT, VAPT, frontend engineering, and security writeups.',
 }
 
 export default function RootLayout({
@@ -32,7 +33,7 @@ export default function RootLayout({
           data-include-search-params="true"
           data-only-in-iframe="true"
           data-debug="true"
-          data-custom-data='{"appName": "YourApp", "version": "1.0.0", "greeting": "hi"}'
+          data-custom-data='{"appName": "Aura Operator", "version": "1.0.0", "greeting": "hi"}'
         />
         {children}
         <VisualEditsMessenger />

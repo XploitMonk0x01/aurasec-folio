@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Stardos+Stencil:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Rajdhani:wght@400;500;600;700&family=Stardos+Stencil:wght@400;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -7,13 +7,13 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: 'Space Grotesk', var(--font-geist-sans);
+  --font-sans: 'Rajdhani', var(--font-geist-sans);
   --font-mono: 'JetBrains Mono', var(--font-geist-mono);
   --font-stencil: 'Stardos Stencil', cursive;
   
-  --color-army-olive: #4B5320;
+  --color-army-olive: #8a9a35;
   --color-army-maroon: #800000;
-  --color-cyber-red: #FF3131;
+  --color-cyber-red: #ff3131;
   --color-tactical-black: #050505;
   
   --color-sidebar-ring: var(--sidebar-ring);
@@ -81,15 +81,15 @@
 
 :root {
   --radius: 0rem;
-  --background: #050505;
+  --background: #040303;
   --foreground: #f9fafb;
   --card: #0a0a0a;
   --card-foreground: #f9fafb;
   --popover: #0a0a0a;
   --popover-foreground: #f9fafb;
-  --primary: #FF3131;
+  --primary: #ff3131;
   --primary-foreground: #050505;
-  --secondary: #4B5320;
+  --secondary: #8a9a35;
   --secondary-foreground: #f9fafb;
   --muted: #1a1a1a;
   --muted-foreground: #a1a1aa;
@@ -98,7 +98,7 @@
   --destructive: #ef4444;
   --border: #27272a;
   --input: #27272a;
-  --ring: #FF3131;
+  --ring: #ff3131;
 }
 
 @layer base {
@@ -107,6 +107,10 @@
   }
   body {
     @apply bg-background text-foreground font-sans selection:bg-cyber-red selection:text-black overflow-x-hidden;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(255, 49, 49, 0.12), transparent 28rem),
+      radial-gradient(circle at 80% 30%, rgba(138, 154, 53, 0.07), transparent 26rem),
+      #040303;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-stencil tracking-tighter;
@@ -125,8 +129,25 @@
     animation: scanline 8s linear infinite;
   }
   .grid-bg {
-    background-image: radial-gradient(circle at 2px 2px, rgba(255, 49, 49, 0.05) 1px, transparent 0);
+    background-image:
+      linear-gradient(rgba(255, 49, 49, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 49, 49, 0.045) 1px, transparent 1px);
     background-size: 24px 24px;
+  }
+  .tactical-map {
+    background:
+      linear-gradient(90deg, rgba(255, 49, 49, 0.08) 1px, transparent 1px),
+      linear-gradient(rgba(255, 49, 49, 0.08) 1px, transparent 1px),
+      radial-gradient(circle at center, rgba(255, 49, 49, 0.18), transparent 34%),
+      linear-gradient(135deg, transparent 0 48%, rgba(138, 154, 53, 0.2) 49% 51%, transparent 52% 100%);
+    background-size: 56px 56px, 56px 56px, 100% 100%, 100% 100%;
+  }
+  .dossier-grid {
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: linear-gradient(to bottom, black, transparent);
   }
   .text-glow {
     text-shadow: 0 0 10px rgba(255, 49, 49, 0.5);
