@@ -97,18 +97,18 @@ export function Terminal({ lines }: TerminalProps) {
 
   return (
     <div
-      className="relative w-full max-w-3xl overflow-hidden border border-cyber-red/30 bg-[#070404]/90 font-mono text-sm shadow-[0_0_70px_rgba(255,49,49,0.18)] backdrop-blur-md"
+      className="relative w-full max-w-3xl overflow-hidden border border-paper/12 bg-ink/90 font-mono text-sm shadow-[0_28px_80px_rgba(0,0,0,0.35)] backdrop-blur-md"
       onClick={() => inputRef.current?.focus()}
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyber-red to-transparent" />
-      <div className="flex items-center justify-between border-b border-cyber-red/25 bg-cyber-red/10 px-4 py-3">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-signal-red to-transparent" />
+      <div className="flex items-center justify-between border-b border-paper/12 bg-paper/5 px-4 py-3">
         <div className="flex items-center gap-3">
-          <TerminalSquare className="h-4 w-4 text-cyber-red" />
+          <TerminalSquare className="h-4 w-4 text-signal-red" />
           <div>
-            <div className="text-[10px] uppercase tracking-[0.35em] text-cyber-red">
-              SECURE_TERMINAL_V.5.5
+            <div className="text-[10px] uppercase tracking-[0.32em] text-signal-red">
+              dossier shell v5.5
             </div>
-            <div className="text-[9px] uppercase tracking-[0.25em] text-zinc-500">
+            <div className="text-[9px] uppercase tracking-[0.25em] text-paper-muted">
               interactive command shell
             </div>
           </div>
@@ -119,7 +119,7 @@ export function Terminal({ lines }: TerminalProps) {
             event.stopPropagation()
             setEntries([{ kind: 'system', text: 'TERMINAL_BUFFER_RESET' }])
           }}
-          className="grid h-8 w-8 place-items-center border border-cyber-red/20 text-cyber-red/70 transition hover:border-cyber-red hover:text-white"
+          className="grid h-8 w-8 place-items-center border border-paper/15 text-paper-muted transition hover:border-signal-red hover:text-paper"
           aria-label="Reset terminal"
         >
           <RotateCcw className="h-3.5 w-3.5" />
@@ -134,14 +134,14 @@ export function Terminal({ lines }: TerminalProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.15 }}
             className={`mb-1.5 flex gap-2 ${
-              entry.kind === 'command' ? 'text-white' : 'text-cyber-red/90'
+              entry.kind === 'command' ? 'text-paper' : 'text-signal-red/90'
             }`}
           >
             <span
               className={
                 entry.kind === 'response'
-                  ? 'text-army-olive'
-                  : 'text-cyber-red'
+                  ? 'text-oxide'
+                  : 'text-signal-red'
               }
             >
               {entry.kind === 'command' ? '$' : '>'}
@@ -151,19 +151,19 @@ export function Terminal({ lines }: TerminalProps) {
         ))}
 
         <form onSubmit={submitCommand} className="mt-4 flex items-center gap-2">
-          <span className="text-cyber-red">$</span>
+          <span className="text-signal-red">$</span>
           <input
             ref={inputRef}
             value={value}
             onChange={(event) => setValue(event.target.value)}
-            className="min-w-0 flex-1 bg-transparent text-white caret-cyber-red outline-none placeholder:text-zinc-700"
+            className="min-w-0 flex-1 bg-transparent text-paper caret-signal-red outline-none placeholder:text-paper-muted/45"
             placeholder="type help, scan, projects..."
             autoComplete="off"
             spellCheck={false}
           />
           <button
             type="submit"
-            className="grid h-8 w-8 place-items-center border border-cyber-red/20 text-cyber-red transition hover:border-cyber-red hover:bg-cyber-red hover:text-black"
+            className="grid h-8 w-8 place-items-center border border-paper/15 text-signal-red transition hover:border-signal-red hover:bg-signal-red hover:text-ink"
             aria-label="Run command"
           >
             <CornerDownLeft className="h-4 w-4" />

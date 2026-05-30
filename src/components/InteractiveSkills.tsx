@@ -148,17 +148,17 @@ export function InteractiveSkills() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 grid gap-5 md:grid-cols-[0.8fr_1.2fr] md:items-end">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.45em] text-cyber-red">
-              selectable intelligence
+            <p className="font-mono text-xs uppercase tracking-[0.42em] text-signal-red">
+              capability index
             </p>
-            <h2 className="mt-3 text-4xl text-white md:text-6xl">
-              SKILLS_MATRIX
+            <h2 className="mt-3 text-5xl text-paper md:text-7xl">
+              Skills Matrix
             </h2>
           </div>
-          <p className="font-mono text-sm leading-relaxed text-zinc-400">
-            Hover or focus a node to inspect where each capability fits in the
-            operator profile. The matrix favors practical, mission-ready skill
-            clusters over decorative badges.
+          <p className="text-base leading-8 text-paper-muted">
+            Hover or focus a node to inspect how each capability fits the
+            portfolio. The emphasis is practical craft, not decorative badge
+            collecting.
           </p>
         </div>
 
@@ -176,27 +176,27 @@ export function InteractiveSkills() {
                 transition={{ delay: index * 0.03 }}
                 className={`group relative min-h-40 overflow-hidden border p-4 text-left transition ${
                   activeIndex === index
-                    ? 'border-cyber-red bg-cyber-red/10'
-                    : 'border-cyber-red/15 bg-black/50 hover:border-cyber-red/60'
+                    ? 'border-signal-red bg-signal-red/10'
+                    : 'border-paper/12 paper-panel hover:border-paper/35'
                 }`}
               >
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyber-red/60 to-transparent opacity-0 transition group-hover:opacity-100" />
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-signal-red/70 to-transparent opacity-0 transition group-hover:opacity-100" />
                 <div className="flex items-start justify-between">
                   <skill.icon
                     className={`h-7 w-7 ${
-                      activeIndex === index ? 'text-cyber-red' : 'text-zinc-500'
+                      activeIndex === index ? 'text-signal-red' : 'text-paper-muted'
                     }`}
                   />
-                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-oxide">
                     {skill.category}
                   </span>
                 </div>
-                <div className="mt-8 font-mono text-xs uppercase tracking-[0.18em] text-white">
+                <div className="mt-8 font-mono text-xs uppercase tracking-[0.18em] text-paper">
                   {skill.name}
                 </div>
-                <div className="mt-4 h-1 bg-white/5">
+                <div className="mt-4 h-1 bg-paper/10">
                   <div
-                    className="h-full bg-cyber-red transition-all duration-500"
+                    className="h-full bg-signal-red transition-all duration-500"
                     style={{ width: `${skill.level}%` }}
                   />
                 </div>
@@ -204,28 +204,28 @@ export function InteractiveSkills() {
             ))}
           </div>
 
-          <div className="sticky top-24 h-fit border border-cyber-red/20 bg-black/70 p-6">
+          <div className="sticky top-24 h-fit border border-paper/12 paper-light p-6 text-ink">
             <div className="mb-8 flex items-center justify-between">
-              <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-zinc-500">
+              <span className="font-mono text-[10px] uppercase tracking-[0.32em] text-ink/55">
                 active node
               </span>
-              <span className="font-mono text-xs text-cyber-red">
+              <span className="font-mono text-xs text-signal-red">
                 {active.level}%
               </span>
             </div>
-            <active.icon className="mb-5 h-10 w-10 text-cyber-red" />
-            <h3 className="text-3xl text-white">{active.name}</h3>
-            <p className="mt-4 font-mono text-sm leading-relaxed text-zinc-400">
+            <active.icon className="mb-5 h-10 w-10 text-signal-red" />
+            <h3 className="text-4xl text-ink">{active.name}</h3>
+            <p className="mt-4 text-sm leading-7 text-ink/70">
               {active.detail}
             </p>
             <div className="mt-8 space-y-3">
               {['research', 'execution', 'reporting'].map((phase, index) => (
                 <div key={phase} className="flex items-center gap-3">
-                  <span className="font-mono text-[10px] text-cyber-red">
+                  <span className="font-mono text-[10px] text-signal-red">
                     0{index + 1}
                   </span>
-                  <div className="h-px flex-1 bg-cyber-red/20" />
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">
+                  <div className="h-px flex-1 bg-ink/15" />
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/55">
                     {phase}
                   </span>
                 </div>

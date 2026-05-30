@@ -47,17 +47,17 @@ const evidenceFrames = [
   {
     title: 'MEMORY SNAPSHOT',
     meta: 'PID: 1848 // IOC_MATCH',
-    className: 'from-cyber-red/20 via-black to-zinc-950',
+    className: 'from-signal-red/20 via-ink to-ink-soft',
   },
   {
     title: 'DISK ARTIFACT',
     meta: 'MFT // HASH_LOCKED',
-    className: 'from-army-olive/20 via-black to-zinc-950',
+    className: 'from-oxide/20 via-ink to-ink-soft',
   },
   {
     title: 'NETWORK TRACE',
     meta: 'TLS // BEACON_PATTERN',
-    className: 'from-white/10 via-black to-zinc-950',
+    className: 'from-paper/10 via-ink to-ink-soft',
   },
 ]
 
@@ -283,14 +283,14 @@ export function FrontendLab() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.45em] text-cyber-red">
+            <p className="font-mono text-xs uppercase tracking-[0.42em] text-signal-red">
               forensic interface proof
             </p>
-            <h2 className="mt-3 text-4xl text-white md:text-6xl">
-              INTERFACE_LAB
+            <h2 className="mt-3 text-5xl text-paper md:text-7xl">
+              Interface Lab
             </h2>
           </div>
-          <p className="font-mono text-sm leading-relaxed text-zinc-400">
+          <p className="text-base leading-8 text-paper-muted">
             A quieter frontend showcase styled as a digital forensics review
             desk: framed captures, case-state controls, scroll reveals, and a
             focused Three.js evidence stack.
@@ -299,13 +299,13 @@ export function FrontendLab() {
 
         <div className="grid gap-6 lg:grid-cols-[1fr_410px]">
           <div
-            className="relative min-h-[440px] overflow-hidden border border-cyber-red/20 bg-black/60 md:min-h-[580px]"
+            className="relative min-h-[440px] overflow-hidden border border-paper/12 paper-panel md:min-h-[580px]"
             onPointerMove={updatePointer}
             onPointerLeave={() => {
               pointerRef.current = { x: 0, y: 0 }
             }}
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_45%_42%,rgba(255,49,49,0.16),transparent_28rem)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_45%_42%,rgba(231,71,46,0.18),transparent_28rem)]" />
             <div className="absolute inset-0 dossier-grid opacity-35" />
             <canvas
               ref={canvasRef}
@@ -313,18 +313,18 @@ export function FrontendLab() {
               aria-label="Interactive Three.js forensic evidence viewer"
             />
 
-            <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2 border border-cyber-red/20 bg-black/55 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.24em] text-cyber-red">
+            <div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2 border border-paper/15 bg-ink/70 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.24em] text-signal-red">
               <MousePointer2 className="h-4 w-4" />
               review surface
             </div>
 
             <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/55 to-transparent p-5 md:p-6">
               <div className="max-w-2xl">
-                <div className="mb-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-cyber-red">
+                <div className="mb-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-signal-red">
                   <Layers3 className="h-4 w-4" />
                   {activeView.label}
                 </div>
-                <p className="font-mono text-sm leading-relaxed text-zinc-300">
+                <p className="text-sm leading-7 text-paper">
                   {activeView.note}
                 </p>
               </div>
@@ -340,8 +340,8 @@ export function FrontendLab() {
                   onClick={() => setActiveView(view)}
                   className={`min-h-28 border p-4 text-left transition ${
                     activeView.id === view.id
-                      ? 'border-cyber-red bg-cyber-red/10 text-white'
-                      : 'border-cyber-red/15 bg-black/50 text-zinc-500 hover:border-cyber-red/50 hover:text-white'
+                      ? 'border-signal-red bg-signal-red/10 text-paper'
+                      : 'border-paper/12 paper-panel text-paper-muted hover:border-paper/35 hover:text-paper'
                   }`}
                 >
                   <view.icon
@@ -362,19 +362,19 @@ export function FrontendLab() {
                   initial={{ opacity: 0, x: 18 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.08 }}
-                  className="group overflow-hidden border border-cyber-red/15 bg-black/55 p-3"
+                  className="group overflow-hidden border border-paper/12 paper-panel p-3"
                 >
                   <div
                     className={`relative h-24 overflow-hidden border border-white/10 bg-gradient-to-br ${frame.className}`}
                   >
                     <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:18px_18px]" />
-                    <div className="absolute left-3 top-3 font-mono text-[10px] uppercase tracking-[0.2em] text-white">
+                    <div className="absolute left-3 top-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper">
                       {frame.title}
                     </div>
-                    <div className="absolute bottom-3 left-3 font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-500">
+                    <div className="absolute bottom-3 left-3 font-mono text-[9px] uppercase tracking-[0.2em] text-paper-muted">
                       {frame.meta}
                     </div>
-                    <div className="absolute right-4 top-4 h-12 w-12 rounded-full border border-cyber-red/30 transition group-hover:scale-110" />
+                    <div className="absolute right-4 top-4 h-12 w-12 rounded-full border border-signal-red/30 transition group-hover:scale-110" />
                   </div>
                 </motion.div>
               ))}
@@ -382,11 +382,11 @@ export function FrontendLab() {
 
             <div className="grid grid-cols-2 gap-3">
               {craftStats.map((stat) => (
-                <div key={stat.label} className="border border-white/10 bg-black/45 p-4">
-                  <div className="font-stencil text-3xl text-cyber-red">
+                <div key={stat.label} className="border border-paper/12 paper-light p-4 text-ink">
+                  <div className="font-display text-4xl text-signal-red">
                     {stat.value}
                   </div>
-                  <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.22em] text-zinc-600">
+                  <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.22em] text-ink/50">
                     {stat.label}
                   </div>
                 </div>
