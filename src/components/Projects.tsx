@@ -13,19 +13,6 @@ import {
 
 const projects = [
   {
-    title: 'Trek Connect',
-    description:
-      'A full-stack travel companion that blends trek discovery, social planning, and AI guidance for outdoor communities.',
-    objective:
-      'Design a polished product flow where trekkers can discover routes, connect with people, and use AI assistance without leaving the planning experience.',
-    tags: ['NEXT.JS', 'FIREBASE', 'GEMINI'],
-    status: 'DEPLOYED',
-    impact: 'AI product experience',
-    signals: ['Responsive product UI', 'AI-assisted discovery', 'Realtime app foundation'],
-    githubUrl: 'https://github.com/XploitMonk0x01/TrekConnect',
-    liveUrl: 'https://trekconnect.vercel.app/',
-  },
-  {
     title: 'XploitVerse',
     description:
       'A cyber learning universe for guided labs, ethical hacking practice, vulnerability assessment workflows, and skill progression.',
@@ -37,6 +24,32 @@ const projects = [
     signals: ['Lab-first architecture', 'Mission-based lessons', 'Assessment-ready workflows'],
     githubUrl: '',
     liveUrl: '',
+  },
+  {
+    title: 'CrimeGPT',
+    description:
+      'An AI-driven platform that streamlines crime documentation, maps legal sections, and generates case records from incident narratives.',
+    objective:
+      'Automate FIR-to-arrest documentation, maintain a live case diary, and surface relevant BNS/BNSS/BSA sections with RAG-backed legal intelligence.',
+    tags: ['REACT', 'FASTAPI', 'RAG'],
+    status: 'IN_TESTING',
+    impact: 'Law enforcement automation',
+    signals: ['Automated document drafts', 'Legal section intelligence', 'Case diary workflow'],
+    githubUrl: 'https://github.com/XploitMonk0x01/crimegpt',
+    liveUrl: '',
+  },
+  {
+    title: 'Trek Connect',
+    description:
+      'A full-stack travel companion that blends trek discovery, social planning, and AI guidance for outdoor communities.',
+    objective:
+      'Design a polished product flow where trekkers can discover routes, connect with people, and use AI assistance without leaving the planning experience.',
+    tags: ['NEXT.JS', 'FIREBASE', 'GEMINI'],
+    status: 'DEPLOYED',
+    impact: 'AI product experience',
+    signals: ['Responsive product UI', 'AI-assisted discovery', 'Realtime app foundation'],
+    githubUrl: 'https://github.com/XploitMonk0x01/TrekConnect',
+    liveUrl: 'https://trekconnect.vercel.app/',
   },
   {
     title: 'Social Tracer',

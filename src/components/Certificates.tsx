@@ -11,7 +11,6 @@ const categories = [
   'API',
   'HACKATHONS',
   'UDEMY',
-  'CISCO',
 ]
 
 const certificates = [
@@ -86,24 +85,38 @@ const certificates = [
     date: '2024',
   },
   {
+    id: 14,
+    title: 'Quick Heal Certified Malware Essentials',
+    issuer: 'Quick Heal Academy',
+    category: 'QUICK HEAL',
+    date: '2026',
+  },
+  {
+    id: 15,
+    title: 'Quick Heal Certified Mobile Application Penetration Testing Analyst',
+    issuer: 'Quick Heal Academy',
+    category: 'QUICK HEAL',
+    date: '2026',
+  },
+  {
     id: 11,
     title: 'Introduction to Cybersecurity',
     issuer: 'Cisco Networking Academy',
-    category: 'CISCO',
+    category: 'NETWORKING',
     date: '2024',
   },
   {
     id: 12,
     title: 'CCNA: Introduction to Networks',
     issuer: 'Cisco Networking Academy',
-    category: 'CISCO',
+    category: 'NETWORKING',
     date: '2024',
   },
   {
     id: 13,
     title: 'Networking Basics',
     issuer: 'Cisco Networking Academy',
-    category: 'CISCO',
+    category: 'NETWORKING',
     date: '2024',
   },
 ]

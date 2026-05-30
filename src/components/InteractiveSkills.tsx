@@ -131,11 +131,11 @@ const skills = [
     detail: 'Cross-platform mobile UI and practical app prototyping.',
   },
   {
-    name: 'C / C++',
+    name: 'Java',
     icon: Cpu,
     category: 'Core',
     level: 76,
-    detail: 'Systems fundamentals and low-level programming discipline.',
+    detail: 'Object-oriented foundations, data structures, and backend-ready Java.',
   },
 ]
 

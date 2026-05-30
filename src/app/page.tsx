@@ -20,7 +20,6 @@ import {
   Github,
   Linkedin,
   ShieldCheck,
-  Sparkles,
 } from 'lucide-react'
 
 const practiceTiles = [
@@ -73,10 +72,6 @@ export default function Home() {
               <span className="inline-flex items-center gap-2 border border-oxide/40 bg-oxide/10 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.28em] text-oxide">
                 <ShieldCheck className="h-4 w-4" />
                 Student security practitioner
-              </span>
-              <span className="inline-flex items-center gap-2 border border-signal-red/40 bg-signal-red/10 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.28em] text-signal-red">
-                <Sparkles className="h-4 w-4" />
-                GPT-assisted builder
               </span>
             </div>
 
