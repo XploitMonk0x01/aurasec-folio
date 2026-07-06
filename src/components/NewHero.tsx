@@ -218,13 +218,15 @@ export function NewHero() {
                 <ArrowRight className="h-4 w-4" />
               </motion.a>
               <motion.a
-                href="#contact"
+                href="https://www.linkedin.com/in/chandansemwal/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hero-cta group inline-flex items-center gap-3 rounded-xl border border-white/10 px-6 py-3.5 font-mono text-xs uppercase tracking-widest text-paper-muted opacity-0 backdrop-blur-sm transition-colors hover:border-violet/50 hover:text-paper"
                 whileHover={{ scale: 1.04, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 20 }}
               >
-                Get in Touch
+                Connect Linkedin
               </motion.a>
             </div>
 

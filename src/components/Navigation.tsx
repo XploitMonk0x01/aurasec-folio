@@ -46,19 +46,17 @@ export function Navigation() {
   return (
     <>
       <nav
-        className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${
-          scrolled ? 'pt-4' : 'pt-6'
-        }`}
+        className={`fixed inset-x-0 top-0 z-[100] transition-all duration-500 ${scrolled ? 'pt-4' : 'pt-6'
+          }`}
       >
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 sm:px-6">
           <motion.div
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className={`flex w-full items-center justify-between gap-4 rounded-full border transition-all duration-500 ${
-              scrolled
+            className={`flex w-full items-center justify-between gap-4 rounded-full border transition-all duration-500 ${scrolled
                 ? 'border-white/10 bg-white/5 px-4 py-3 backdrop-blur-xl shadow-2xl'
                 : 'border-transparent bg-transparent px-2 py-2'
-            }`}
+              }`}
           >
             {/* Logo */}
             <a href="#about" className="group flex shrink-0 items-center gap-3">
@@ -170,11 +168,13 @@ export function Navigation() {
                 className="mt-8"
               >
                 <a
-                  href="#contact"
+                  href="https://www.linkedin.com/in/chandansemwal/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setMenuOpen(false)}
                   className="flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-violet to-purple-600 py-5 font-mono text-xs font-bold uppercase tracking-widest text-white shadow-lg shadow-violet/20"
                 >
-                  Get in Touch
+                  Connect Linkedin
                 </a>
               </motion.div>
             </div>

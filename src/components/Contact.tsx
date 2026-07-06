@@ -8,7 +8,13 @@ export function Contact() {
   return (
     <section id="contact" className="px-6 py-24">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end"
+        >
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.42em] text-primary">
               secure channel
@@ -21,7 +27,7 @@ export function Contact() {
             Open for security collaboration, project work, learning circles,
             and practical cyber or app-building missions.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           
@@ -37,24 +43,29 @@ export function Contact() {
               </h3>
               
               <div className="space-y-6 font-mono text-sm uppercase tracking-widest text-muted-foreground">
-                <div className="flex items-center gap-4 group">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-violet/10 transition-colors group-hover:bg-violet/20">
-                    <MapPin className="h-4 w-4 text-violet-bright" />
-                  </div>
-                  <span className="transition-colors group-hover:text-foreground">Vadodara, India</span>
-                </div>
-                <div className="flex items-center gap-4 group">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal/10 transition-colors group-hover:bg-teal/20">
-                    <Mail className="h-4 w-4 text-teal-bright" />
-                  </div>
-                  <span className="transition-colors group-hover:text-foreground">ethicalrobo06@gmail.com</span>
-                </div>
-                <div className="flex items-center gap-4 group">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-500/10 transition-colors group-hover:bg-purple-500/20">
-                    <Phone className="h-4 w-4 text-purple-400" />
-                  </div>
-                  <span className="transition-colors group-hover:text-foreground">+91 [REDACTED]</span>
-                </div>
+                {[
+                  { Icon: MapPin, text: 'Vadodara, India', color: 'violet' },
+                  { Icon: Mail, text: 'ethicalrobo06@gmail.com', color: 'teal' },
+                  { Icon: Phone, text: '+91 [REDACTED]', color: 'purple-400' },
+                ].map(({ Icon, text, color }, i) => (
+                  <motion.div
+                    key={text}
+                    initial={{ opacity: 0, x: -16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ delay: i * 0.12, duration: 0.5, ease: 'easeOut' }}
+                    className="flex items-center gap-4 group"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.15, rotate: -5 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-${color}/10 transition-colors group-hover:bg-${color}/20`}
+                    >
+                      <Icon className={`h-4 w-4 text-${color}-bright`} style={{ color: color === 'purple-400' ? '#c084fc' : undefined }} />
+                    </motion.div>
+                    <span className="transition-colors group-hover:text-foreground">{text}</span>
+                  </motion.div>
+                ))}
               </div>
             </div>
 

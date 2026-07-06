@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useEffect, useRef } from 'react'
+import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import {
   Crosshair,
   DatabaseZap,
@@ -10,6 +10,21 @@ import {
   ShieldCheck,
   Radar
 } from 'lucide-react'
+
+// Animated counter that counts up from 0
+function CountUp({ value, suffix = '' }: { value: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-50px' })
+  const motionValue = useMotionValue(0)
+  const spring = useSpring(motionValue, { duration: 1600, bounce: 0 })
+  const display = useTransform(spring, (v) => Math.round(v).toString() + suffix)
+
+  useEffect(() => {
+    if (inView) motionValue.set(value)
+  }, [inView, value, motionValue])
+
+  return <motion.span ref={ref}>{display}</motion.span>
+}
 
 const telemetry = [
   { label: 'Open source contributions', value: '5+', color: 'from-violet-500 to-purple-600' },
@@ -62,15 +77,16 @@ export function MissionDashboard() {
               {telemetry.map((item, index) => (
                 <motion.div
                   key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.92 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ delay: index * 0.1, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className="void-glass group relative overflow-hidden rounded-2xl p-6 transition-colors hover:border-violet/40 hover:bg-white/5"
                 >
                   <div
                     className={`bg-gradient-to-r ${item.color} bg-clip-text font-display text-4xl font-bold text-transparent md:text-5xl`}
                   >
-                    {item.value}
+                    <CountUp value={parseInt(item.value)} suffix={item.value.replace(/[0-9]/g, '')} />
                   </div>
                   <div className="mt-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground transition-colors group-hover:text-paper">
                     {item.label}
@@ -98,15 +114,27 @@ export function MissionDashboard() {
               
               <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
                 {capabilityMap.map((item, i) => (
-                  <div key={item.name} className="group/item flex flex-col items-center justify-center gap-3 rounded-xl border border-white/5 bg-white/2 p-4 transition-all hover:-translate-y-1 hover:border-violet/30 hover:bg-white/5">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-violet/10 transition-colors group-hover/item:bg-violet/20">
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{ delay: i * 0.08, duration: 0.5, ease: 'backOut' }}
+                    whileHover={{ y: -4, scale: 1.04 }}
+                    className="group/item flex flex-col items-center justify-center gap-3 rounded-xl border border-white/5 bg-white/2 p-4 transition-colors hover:border-violet/30 hover:bg-white/5"
+                  >
+                    <motion.div
+                      whileHover={{ rotate: [0, -10, 10, 0] }}
+                      transition={{ duration: 0.4 }}
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-violet/10 transition-colors group-hover/item:bg-violet/20"
+                    >
                       <item.icon className="h-5 w-5 text-violet-bright" />
-                    </div>
+                    </motion.div>
                     <div className="text-center">
                       <div className="font-mono text-xs font-bold uppercase tracking-widest text-foreground">{item.name}</div>
                       <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">{item.note}</div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -133,15 +161,22 @@ export function MissionDashboard() {
             
             <div className="flex flex-1 flex-col justify-center space-y-6">
               {streams.map((stream, index) => (
-                <div
+                <motion.div
                   key={stream}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ delay: index * 0.1, duration: 0.5, ease: 'easeOut' }}
                   className="group flex gap-4 text-sm leading-relaxed text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  <span className="shrink-0 font-mono text-[10px] text-violet-bright transition-colors group-hover:text-teal-bright">
+                  <motion.span
+                    whileHover={{ scale: 1.2 }}
+                    className="shrink-0 font-mono text-[10px] text-violet-bright transition-colors group-hover:text-teal-bright"
+                  >
                     0{index + 1}
-                  </span>
+                  </motion.span>
                   <span>{stream}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>

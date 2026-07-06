@@ -158,17 +158,45 @@ export function InteractiveSkills() {
                   </div>
                 </div>
 
-                <div className="mt-8 grid gap-4 border-t border-white/10 pt-6">
+                {/* Animated proficiency bar */}
+                <div className="mt-6">
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Proficiency</span>
+                    <span className="font-mono text-[10px] tabular-nums text-teal-bright">{active.level}%</span>
+                  </div>
+                  <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-white/8">
+                    <motion.div
+                      key={active.name}
+                      className="absolute left-0 top-0 h-full rounded-full"
+                      style={{ background: 'linear-gradient(90deg, #7C3AED, #06B6D4)' }}
+                      initial={{ width: '0%' }}
+                      animate={{ width: `${active.level}%` }}
+                      transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
+                    />
+                    <motion.div
+                      key={`glow-${active.name}`}
+                      className="absolute top-0 h-full w-8 rounded-full"
+                      style={{ background: 'linear-gradient(90deg, transparent, rgba(168,85,247,0.8), transparent)', left: `${active.level - 4}%` }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: [0, 1, 0] }}
+                      transition={{ duration: 0.6, delay: 0.8 }}
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-6 grid gap-4 border-t border-white/10 pt-6">
                   {['research', 'execution', 'reporting'].map((phase, i) => (
-                    <div key={phase} className="flex items-center gap-4">
-                      <span className="font-mono text-[10px] text-violet-bright">
-                        0{i + 1}
-                      </span>
+                    <motion.div
+                      key={phase}
+                      initial={{ opacity: 0, x: 8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.08, duration: 0.4 }}
+                      className="flex items-center gap-4"
+                    >
+                      <span className="font-mono text-[10px] text-violet-bright">0{i + 1}</span>
                       <div className="h-px flex-1 bg-gradient-to-r from-violet/20 to-transparent" />
-                      <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                        {phase}
-                      </span>
-                    </div>
+                      <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{phase}</span>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
