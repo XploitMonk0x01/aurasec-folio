@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useEffect, useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 
 interface BlurTextProps {
   text?: string
@@ -49,7 +49,7 @@ export function BlurText({
     return () => observer.disconnect()
   }, [threshold, rootMargin])
 
-  const variants = {
+  const variants: Variants = {
     hidden: {
       opacity: 0,
       y: direction === 'top' ? -20 : 20,
@@ -62,7 +62,7 @@ export function BlurText({
       transition: {
         delay: i * (delay / 1000),
         duration: stepDuration,
-        ease: 'easeOut',
+        ease: 'easeOut' as const,
       },
     }),
   }

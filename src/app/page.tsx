@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
 import { Contact } from '@/components/Contact'
 import { Certificates } from '@/components/Certificates'
 import { InteractiveSkills } from '@/components/InteractiveSkills'
@@ -9,214 +8,106 @@ import { MissionDashboard } from '@/components/MissionDashboard'
 import { MediumDispatches } from '@/components/MediumDispatches'
 import { Navigation } from '@/components/Navigation'
 import { Projects } from '@/components/Projects'
-import { RadarBackground } from '@/components/RadarBackground'
-import { Terminal } from '@/components/Terminal'
-import { FrontendLab } from '@/components/FrontendLab'
-import {
-  ArrowDown,
-  ArrowUpRight,
-  Download,
-  Fingerprint,
-  Github,
-  Linkedin,
-  ShieldCheck,
-} from 'lucide-react'
-
-const practiceTiles = [
-  { label: 'Forensics', value: 'Timeline, artifacts, evidence' },
-  { label: 'OSINT', value: 'Entity traces and public signals' },
-  { label: 'VAPT', value: 'Recon, validation, reporting' },
-  { label: 'Frontend', value: 'Interfaces that explain work' },
-]
-
-const terminalLines = [
-  'CASE FILE OPENED: CHANDAN_SINGH',
-  'FOCUS: DFIR / OSINT / VAPT / FRONTEND',
-  'CONTEXT: PARUL UNIVERSITY, 3RD YEAR',
-  'PORTFOLIO MODE: INCIDENT DOSSIER',
-  'TYPE "help" TO INSPECT THE RECORD',
-]
+import { NewHero } from '@/components/NewHero'
+import { ActionLink } from '@/components/PortfolioPrimitives'
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden">
-      <RadarBackground />
+    <main className="relative min-h-screen overflow-hidden bg-ink">
       <Navigation />
 
-      <section
-        id="about"
-        className="relative flex min-h-screen items-center px-6 pb-16 pt-28"
-      >
-        <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[86px_1fr_430px] lg:items-stretch">
-          <motion.aside
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="hidden border-l border-r border-paper/12 bg-paper/5 lg:flex lg:flex-col lg:items-center lg:justify-between lg:py-6"
-          >
-            <span className="writing-mode-vertical font-mono text-[10px] uppercase tracking-[0.42em] text-paper-muted">
-              incident portfolio
-            </span>
-            <Fingerprint className="h-6 w-6 text-signal-red" />
-            <span className="writing-mode-vertical font-mono text-[10px] uppercase tracking-[0.42em] text-paper-muted">
-              case 0x01
-            </span>
-          </motion.aside>
-
-          <motion.div
-            initial={{ opacity: 0, x: -28 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="relative z-10 flex flex-col justify-center border-y border-paper/10 py-10"
-          >
-            <div className="mb-8 flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 border border-oxide/40 bg-oxide/10 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.28em] text-oxide">
-                <ShieldCheck className="h-4 w-4" />
-                Student security practitioner
-              </span>
-            </div>
-
-            <h1 className="max-w-5xl text-balance text-[5.4rem] leading-[0.82] text-paper sm:text-[7rem] md:text-[9rem] xl:text-[10.8rem]">
-              Chandan
-              <span className="block italic text-signal-red">Singh</span>
-            </h1>
-
-            <div className="mt-8 grid max-w-4xl gap-6 lg:grid-cols-[1fr_0.75fr]">
-              <p className="text-balance text-xl leading-8 text-paper md:text-2xl md:leading-9">
-                Cybersecurity student shaping forensic thinking, OSINT craft,
-                and practical app engineering into readable tools and reports.
-              </p>
-              <p className="border-l border-paper/15 pl-5 text-sm leading-7 text-paper-muted">
-                I study at Parul University and build hands-on projects across
-                network security, ethical hacking, automation, and frontend
-                interfaces. The goal is simple: make technical evidence easier
-                to trust, review, and act on.
-              </p>
-            </div>
-
-            <div className="mt-10 flex flex-wrap gap-3">
-              <a
-                href="#projects"
-                className="inline-flex items-center gap-2 bg-paper px-5 py-3 font-mono text-xs uppercase tracking-[0.2em] text-ink transition hover:bg-signal-red"
-              >
-                View work
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-              <a
-                href="https://linkedin.com/in/chandansemwal"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 border border-paper/20 px-5 py-3 font-mono text-xs uppercase tracking-[0.2em] text-paper transition hover:border-paper hover:bg-paper/10"
-              >
-                <Linkedin className="h-4 w-4" />
-                LinkedIn
-              </a>
-              <a
-                href="https://github.com/XploitMonk0x01"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 border border-paper/20 px-5 py-3 font-mono text-xs uppercase tracking-[0.2em] text-paper-muted transition hover:border-oxide hover:text-paper"
-              >
-                <Github className="h-4 w-4" />
-                GitHub
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 border border-signal-red/35 px-5 py-3 font-mono text-xs uppercase tracking-[0.2em] text-signal-red transition hover:bg-signal-red hover:text-ink"
-              >
-                <Download className="h-4 w-4" />
-                Contact
-              </a>
-            </div>
-
-            <div className="mt-12 grid max-w-4xl gap-3 sm:grid-cols-2 xl:grid-cols-4">
-              {practiceTiles.map((item) => (
-                <div
-                  key={item.label}
-                  className="min-h-32 border border-paper/12 paper-panel p-4"
-                >
-                  <div className="font-mono text-[10px] uppercase tracking-[0.26em] text-signal-red">
-                    {item.label}
-                  </div>
-                  <p className="mt-5 text-sm leading-6 text-paper-muted">
-                    {item.value}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.22, duration: 0.7 }}
-            className="relative flex flex-col justify-center gap-5"
-          >
-            <div className="relative overflow-hidden border border-paper/12 paper-light p-5 text-ink grain">
-              <div className="relative">
-                <div className="flex items-center justify-between border-b border-ink/15 pb-4 font-mono text-[10px] uppercase tracking-[0.24em]">
-                  <span>field note</span>
-                  <span>2026</span>
-                </div>
-                <p className="mt-7 font-display text-4xl leading-none md:text-5xl">
-                  Interfaces should feel like evidence, not decoration.
-                </p>
-                <p className="mt-5 text-sm leading-7 text-ink/70">
-                  This portfolio now uses a case-file rhythm: quieter type,
-                  tactile panels, restrained color, and concrete proof of work.
-                </p>
-              </div>
-            </div>
-
-            <Terminal lines={terminalLines} />
-          </motion.div>
-        </div>
-
-        <a
-          href="#dashboard"
-          className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 items-center gap-2 font-mono text-[10px] uppercase tracking-[0.35em] text-paper-muted transition hover:text-signal-red md:flex"
-        >
-          Scroll case file
-          <ArrowDown className="h-4 w-4 animate-bounce" />
-        </a>
-      </section>
+      <NewHero />
 
       <MissionDashboard />
 
-      <section className="px-6 py-24">
-        <div className="mx-auto grid max-w-7xl gap-8 border-y border-paper/10 py-16 lg:grid-cols-[0.75fr_1.25fr]">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.42em] text-signal-red">
-              operator profile
-            </p>
-            <h2 className="mt-3 text-5xl text-paper md:text-7xl">
-              Field Notes
-            </h2>
-          </div>
-          <div className="grid gap-6 text-base leading-8 text-paper-muted md:grid-cols-2">
-            <p>
-              I work across web and Android app building, Python, Java, C, C++,
-              JavaScript, Bash, and PowerShell. That range helps me understand
-              systems from UI behavior down to operating details.
-            </p>
-            <p>
-              My strongest interest is the overlap between security research
-              and usable products: tools, reports, dashboards, and learning
-              systems that make complex findings legible.
-            </p>
+      {/* Field Notes section */}
+      <section className="content-section px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-[0.6fr_0.4fr] lg:items-start">
+            {/* Text side */}
+            <div className="lg:pl-2">
+              <p className="font-mono text-xs uppercase tracking-[0.42em] text-primary">
+                expedition log
+              </p>
+              <h2 className="mt-3 text-5xl text-foreground md:text-7xl">Field Notes</h2>
+
+              <div className="mt-6 grid gap-6 text-base leading-8 text-muted-foreground md:grid-cols-1">
+                <p>
+                  I work across web and Android app building, Python, Java, C, C++,
+                  JavaScript, Bash, and PowerShell. That range helps me understand
+                  systems from UI behavior down to operating details.
+                </p>
+                <p>
+                  My strongest interest is the overlap between security research
+                  and usable products: tools, reports, dashboards, and learning
+                  systems that make complex findings legible.
+                </p>
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <ActionLink href="#projects" tone="primary">
+                  View Expedition Cards
+                </ActionLink>
+                <ActionLink href="#contact" tone="quiet">
+                  Request a briefing
+                </ActionLink>
+              </div>
+            </div>
+
+            {/* Visual side */}
+            <div className="relative overflow-hidden rounded-xl border border-white/8 bg-card/30 p-6 backdrop-blur-xl">
+              <div
+                className="pointer-events-none absolute inset-0 rounded-xl"
+                style={{ background: 'radial-gradient(ellipse at top right, rgba(124,58,237,0.12), transparent 60%)' }}
+              />
+              <div className="relative">
+                <div className="flex items-center justify-between border-b border-white/8 pb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                  <span>approach</span>
+                  <span className="text-violet-bright">active</span>
+                </div>
+
+                <div className="mt-6">
+                  <div className="bg-gradient-to-r from-violet to-teal bg-clip-text text-[56px] font-bold leading-none text-transparent">
+                    v2.0
+                  </div>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                    Precision over noise. Each section is shaped like a field instrument —
+                    readable at a glance, detailed on inspection.
+                  </p>
+                </div>
+
+                <div className="mt-6 border-t border-white/8 pt-5">
+                  <div className="grid gap-3">
+                    {[
+                      { k: 'Focus', v: 'Security → product UI' },
+                      { k: 'Method', v: 'Evidence-first workflows' },
+                      { k: 'Output', v: 'Reusable, deployment-ready modules' },
+                    ].map((row) => (
+                      <div
+                        key={row.k}
+                        className="flex items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground"
+                      >
+                        <span className="text-primary">{row.k}</span>
+                        <span className="text-muted-foreground/90">{row.v}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <InteractiveSkills />
-      <FrontendLab />
-      <MediumDispatches />
-      <Projects />
-      <Certificates />
-      <Contact />
+      <div className="content-section"><InteractiveSkills /></div>
+      <div className="content-section"><MediumDispatches /></div>
+      <div className="content-section"><Projects /></div>
+      <div className="content-section"><Certificates /></div>
+      <div className="content-section"><Contact /></div>
 
-      <footer className="border-t border-paper/10 px-6 py-12 text-center">
+      <footer className="border-t border-white/6 px-6 py-12 text-center">
         <p className="font-mono text-[10px] uppercase tracking-[0.42em] text-paper-muted">
-          &copy; 2026 / XploitMonk0x01 / built as an incident dossier
+          &copy; 2026 / XploitMonk0x01 / built with intention
         </p>
       </footer>
     </main>

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 
 interface LetterPullUpProps {
   text: string
@@ -15,7 +15,7 @@ export function LetterPullUp({
 }: LetterPullUpProps) {
   const letters = text.split('')
 
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
@@ -23,12 +23,12 @@ export function LetterPullUp({
     }),
   }
 
-  const child = {
+  const child: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { type: 'spring', damping: 12, stiffness: 100 },
+      transition: { type: 'spring' as const, damping: 12, stiffness: 100 },
     },
   }
 
