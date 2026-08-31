@@ -1,5 +1,0 @@
-export { BlurText } from './BlurText'
-export { SplitText } from './SplitText'
-export { GradientText } from './GradientText'
-export { LetterPullUp } from './LetterPullUp'
-export { ShinyText } from './ShinyText'
